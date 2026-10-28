@@ -46,17 +46,24 @@ SOURCES = [
 def prepare(root):
     folder = Path(root) / "corpus"
     folder.mkdir(parents=True, exist_ok=True)
+    manifest = folder / 'manifest.json'
+    previous = json.loads(manifest.read_text()) if manifest.exists() else []
     docs, sources = [], []
     for filename, url, sections in SOURCES:
         path = folder / filename
+        downloaded_at = None
         if not path.exists():
             path.write_bytes(fetch(url))
+            downloaded_at = datetime.now(timezone.utc).isoformat()
         raw = path.read_bytes()
         parser = Text()
         parser.feed(raw.decode("utf-8"))
         text = " ".join(parser.parts)
-        observed_at = datetime.fromtimestamp(path.stat().st_mtime, timezone.utc).isoformat()
         digest = hashlib.sha256(raw).hexdigest()
+        # Git checkout changes mtimes. Reuse matching acquisition provenance;
+        # unknown cached provenance stays unknown rather than inventing a date.
+        observed_at = downloaded_at or next((s.get('retrieved_at') for s in previous
+            if s['url'] == url and s['sha256'] == digest), None)
         sources.append({"file": filename, "url": url, "sha256": digest, "retrieved_at": observed_at})
         for identifier, title, start, end in sections:
             left = text.find(start)
