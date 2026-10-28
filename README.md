@@ -107,7 +107,7 @@ python scripts/validate_powerbi.py
 
 Run bootstrap before the script checks. `evaluate.py` is a hand-picked 30-question check for the bundled snapshot. It is not a held-out accuracy score and is not part of CI. The Power BI validator checks schemas and references only.
 
-Local review checks passed with 45 tests and one PostgreSQL skip. The [earlier CI run](https://github.com/Darpen24/medsupply-monitor/actions/runs/40671232920) passed before this branch. Check this pull request's CI for the changed code. CI runs pytest, ruff, the local model checks, Power BI schema checks and a PostgreSQL `dbt build`. The PostgreSQL test needs an empty dedicated database through `POSTGRES_TEST_URL`.
+Local review checks passed with 50 tests and one PostgreSQL skip. The [branch CI run](https://github.com/Darpen24/medsupply-monitor/actions/runs/40693563041) passed with PostgreSQL and dbt. Check this pull request's latest CI for the final changes. CI runs pytest, ruff, the local model checks, Power BI schema checks and a PostgreSQL `dbt build`. The PostgreSQL test needs an empty dedicated database through `POSTGRES_TEST_URL`.
 
 ## What I built and what I would change
 
