@@ -1,0 +1,27 @@
+name: Verify live LLM
+on:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/setup-python@v6
+        with:
+          python-version: '3.12'
+      - run: pip install -e '.[dev]'
+      - run: python scripts/bootstrap.py --cached
+      - name: Run two real model requests and scope checks
+        env:
+          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+          OPENAI_MODEL: ${{ vars.OPENAI_MODEL }}
+        run: python scripts/verify_live_llm.py --run-live
+      - uses: actions/upload-artifact@v4
+        with:
+          name: live-llm-acceptance
+          path: acceptance/live-llm-results.json
+          if-no-files-found: error
+          retention-days: 14
