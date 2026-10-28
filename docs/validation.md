@@ -26,7 +26,7 @@ The bundled example was acquired at `2026-10-28T06:11:05.006816+00:00`. It conta
 
 The review workflow downloaded the live feed at `2026-10-28T13:07:35.511051+00:00`. It found 890 source rows, 887 accepted observations and three rejected rows. Its SHA-256 was `8091462449dc64b68f568dea29d3f5ac7a7f412bc2f968c8d852eb146522f987`. Its snapshot ID was `0da8db5f48848f7adfae6426`. An early rerun downloaded again because its own prior artifact was unavailable. That exposed a restoration gap. The workflow now refuses an empty-state rerun and records which history it restores. The next separate run restored the saved artifact and skipped collection. This development issue is not evidence of multi-day history.
 
-The daily history starts from that live observation. It does not import the bundled baseline or synthetic fixtures. Both acquisitions happened on the same date. They do not establish multi-day collection. Do not replace the bundled expected counts with the live counts without also changing the dataset being checked.
+The retained review history starts at `2026-10-28T13:09:10.473468+00:00` with snapshot ID `bac462414129b23b649e827f`, from that early rerun. Its raw hash is unchanged. The later hosted run restored this history and skipped a second collection. It does not import the bundled baseline or synthetic fixtures. Both acquisitions happened on the same date. They do not establish multi-day collection. Do not replace the bundled expected counts with the live counts without also changing the dataset being checked.
 
 ## What remains unverified
 
