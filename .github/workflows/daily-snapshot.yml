@@ -32,15 +32,23 @@ jobs:
           workflow_id=$(gh api "repos/$GITHUB_REPOSITORY/actions/runs/$GITHUB_RUN_ID" --jq .workflow_id)
           # A rerun can restore the artifact from its own earlier attempt.
           has_own_history=$(gh api "repos/$GITHUB_REPOSITORY/actions/runs/$GITHUB_RUN_ID/artifacts" --jq 'any(.artifacts[]; .name == "daily-shortage-history")')
+          echo "Run attempt $GITHUB_RUN_ATTEMPT; own saved history: $has_own_history"
           if [ "$has_own_history" = true ]; then
             previous=$GITHUB_RUN_ID
           else
             previous=$(gh run list --repo "$GITHUB_REPOSITORY" --workflow "$workflow_id" --branch "$GITHUB_REF_NAME" --status success --limit 1 --json databaseId --jq '.[0].databaseId // empty')
           fi
           if [ -n "$previous" ]; then
+            echo "Restoring history from run $previous"
             gh run download "$previous" --repo "$GITHUB_REPOSITORY" --name daily-shortage-history --dir history
             test -f history/state.json
+            test -n "$(find history -maxdepth 1 -name '????-??-??.json' -print -quit)"
           else
+            if [ "$GITHUB_RUN_ATTEMPT" -gt 1 ]; then
+              echo 'No saved history is available for this rerun; refusing to start over.' >&2
+              exit 1
+            fi
+            echo 'No previous successful run; starting the first collection.'
             mkdir -p history
           fi
       - name: Download, validate and publish at most one observation per UTC day
