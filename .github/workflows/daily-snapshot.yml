@@ -1,5 +1,9 @@
 name: Collect daily shortage snapshot
 on:
+  # Exercise the real job during review without enabling the main-branch schedule.
+  push:
+    branches: [finish-project]
+    paths: [.github/workflows/daily-snapshot.yml]
   schedule:
     - cron: '23 6 * * *'
   workflow_dispatch:
@@ -26,7 +30,13 @@ jobs:
         run: |
           set -euo pipefail
           workflow_id=$(gh api "repos/$GITHUB_REPOSITORY/actions/runs/$GITHUB_RUN_ID" --jq .workflow_id)
-          previous=$(gh run list --repo "$GITHUB_REPOSITORY" --workflow "$workflow_id" --branch "$GITHUB_REF_NAME" --status success --limit 1 --json databaseId --jq '.[0].databaseId // empty')
+          # A rerun can restore the artifact from its own earlier attempt.
+          has_own_history=$(gh api "repos/$GITHUB_REPOSITORY/actions/runs/$GITHUB_RUN_ID/artifacts" --jq 'any(.artifacts[]; .name == "daily-shortage-history")')
+          if [ "$has_own_history" = true ]; then
+            previous=$GITHUB_RUN_ID
+          else
+            previous=$(gh run list --repo "$GITHUB_REPOSITORY" --workflow "$workflow_id" --branch "$GITHUB_REF_NAME" --status success --limit 1 --json databaseId --jq '.[0].databaseId // empty')
+          fi
           if [ -n "$previous" ]; then
             gh run download "$previous" --repo "$GITHUB_REPOSITORY" --name daily-shortage-history --dir history
             test -f history/state.json
@@ -45,6 +55,7 @@ jobs:
           path: history/
           if-no-files-found: error
           retention-days: 90
+          overwrite: true
       - name: Store generated CSVs for Power BI
         uses: actions/upload-artifact@v4
         with:
@@ -52,3 +63,4 @@ jobs:
           path: data/exports/
           if-no-files-found: error
           retention-days: 90
+          overwrite: true
