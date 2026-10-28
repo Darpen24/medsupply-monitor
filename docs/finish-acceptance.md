@@ -13,7 +13,7 @@ py -m venv .venv
 Start-Process .\powerbi\MedSupply.pbip
 ```
 
-No activation or PowerShell execution-policy change is needed. The bootstrap generates the CSV exports and configures the local `SourceFolder` parameter before Desktop opens the project.
+No activation or PowerShell execution-policy change is needed. The bootstrap generates the CSV exports. It preserves authored report files. Set the local `SourceFolder` parameter yourself in Desktop before refreshing.
 
 1. In Desktop, open **Transform data → Manage parameters**. Confirm `SourceFolder` points to this extracted checkout's `data/exports` directory.
 2. Select **Close & Apply**, then **Home → Refresh**. All five model tables must load without errors. Record any exact error rather than deleting or skipping a failing table.
@@ -41,7 +41,7 @@ The implemented provider is OpenAI. API billing is separate from ChatGPT subscri
 1. Create a project API key in your OpenAI API account and ensure that API billing and the selected model are available. Do not assume a ChatGPT subscription supplies API credit.
 2. In this GitHub repository, open **Settings → Secrets and variables → Actions → Secrets → New repository secret**. Name it **`OPENAI_API_KEY`** and enter the key yourself.
 3. On the **Variables** tab, add **`OPENAI_MODEL`**, using an available model that supports the Chat Completions endpoint and the `max_completion_tokens` parameter.
-4. Open **Actions → Verify live LLM → Run workflow → main → Run workflow**. This is your explicit opt-in to the provider calls. No schedule or push trigger is configured for this workflow.
+4. Open **Actions → Verify live LLM → Run workflow → finish-project (or main after merge) → Run workflow**. This is your explicit opt-in to the provider calls. No schedule or push trigger is configured for this workflow.
 5. The job must pass. Download **live-llm-acceptance** from the run's artifacts and open `live-llm-results.json`.
 6. Confirm `real_model_calls_completed` is **2** and `automated_contract_checks` is **passed**. Then manually compare every factual claim with its numbered source passage. NIPRUSS should report the published supply explanation; it must not invent available stock, guarantee an end date, or recommend patient treatment. The definition question should distinguish a reported delivery disruption from patient-level supply impact.
 7. Record the run URL, selected model, date and human review result. `human_groundedness_review` intentionally remains `pending` in machine output: valid citation numbers alone do not prove the answer is supported.
