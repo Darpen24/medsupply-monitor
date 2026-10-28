@@ -1,0 +1,40 @@
+name: Import project source
+on:
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Verify and unpack the published project bundle
+        shell: bash
+        run: |
+          python3 - <<'PYCODE'
+          from pathlib import Path, PurePosixPath
+          import hashlib, zipfile
+          archive = Path('MedSupply-Monitor.zip')
+          assert not Path('pyproject.toml').exists(), 'Project already imported; refusing to overwrite source'
+          assert hashlib.sha256(archive.read_bytes()).hexdigest() == '7651b2825d878c3f6879602bbaa24cb6a9a2e8bfc9f7c78b43b641905bc6f4d4', 'Archive hash mismatch'
+          with zipfile.ZipFile(archive) as z:
+              assert z.testzip() is None
+              for name in z.namelist():
+                  path = PurePosixPath(name)
+                  assert not path.is_absolute() and '..' not in path.parts
+                  assert path.parts[0] == 'medicine-shortage-intelligence'
+                  relative = PurePosixPath(*path.parts[1:])
+                  if not path.parts[1:] or relative.parts[0] == '.github' or name.endswith('/'):
+                      continue
+                  target = Path(str(relative))
+                  target.parent.mkdir(parents=True, exist_ok=True)
+                  target.write_bytes(z.read(name))
+          PYCODE
+      - name: Publish extracted source files
+        shell: bash
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add .
+          git commit -m 'Publish full MedSupply Monitor source, data, dashboards and tests'
+          git push origin HEAD:main
