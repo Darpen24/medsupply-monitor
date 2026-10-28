@@ -1,0 +1,14 @@
+[
+  {
+    "file": "shortages.html",
+    "url": "https://gesund.bund.de/arzneimittel-mit-und-ohne-rezept",
+    "sha256": "b583b91c2d153d24cc21f11f39c0b133214540bf67057694144d5139d361f380",
+    "retrieved_at": "2026-10-28T06:11:51.996367+00:00"
+  },
+  {
+    "file": "registry.html",
+    "url": "https://www.verwaltungsdaten-informationsplattform.de/register/270",
+    "sha256": "afebdef04bebe470da91f65e1cdbcb6ce444b25735096b89979e2f76e20923d4",
+    "retrieved_at": "2026-10-28T06:11:57.197027+00:00"
+  }
+]

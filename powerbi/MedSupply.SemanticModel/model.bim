@@ -1,0 +1,599 @@
+{
+  "compatibilityLevel": 1606,
+  "model": {
+    "culture": "en-GB",
+    "defaultPowerBIDataSourceVersion": "powerBI_V3",
+    "dataAccessOptions": {
+      "legacyRedirects": true,
+      "returnErrorValuesAsNull": true
+    },
+    "annotations": [
+      {
+        "name": "__PBI_TimeIntelligenceEnabled",
+        "value": "0"
+      }
+    ],
+    "expressions": [
+      {
+        "name": "SourceFolder",
+        "kind": "m",
+        "expression": "\"/workspace/scratch/fd3b79550a7a/medicine-shortage-intelligence/data/exports\" meta [IsParameterQuery=true, Type=\"Text\", IsParameterQueryRequired=true]"
+      }
+    ],
+    "tables": [
+      {
+        "name": "FactObservation",
+        "columns": [
+          {
+            "name": "snapshot_id",
+            "dataType": "string",
+            "sourceColumn": "snapshot_id",
+            "summarizeBy": "none",
+            "lineageTag": "85e5c632-105d-5834-bcb4-d12e085f7c30"
+          },
+          {
+            "name": "product_key",
+            "dataType": "string",
+            "sourceColumn": "product_key",
+            "summarizeBy": "none",
+            "lineageTag": "11fea034-d452-5832-a1dd-c0a6aa002118"
+          },
+          {
+            "name": "pzn",
+            "dataType": "string",
+            "sourceColumn": "pzn",
+            "summarizeBy": "none",
+            "lineageTag": "8704795e-2282-512f-b3a9-cced6aa1dbe5"
+          },
+          {
+            "name": "enr",
+            "dataType": "string",
+            "sourceColumn": "enr",
+            "summarizeBy": "none",
+            "lineageTag": "8375afdd-bd47-5d64-baac-e95a31e6ac1c"
+          },
+          {
+            "name": "report_id",
+            "dataType": "string",
+            "sourceColumn": "report_id",
+            "summarizeBy": "none",
+            "lineageTag": "08c1bae0-0814-5f21-b843-8fb794279d42"
+          },
+          {
+            "name": "referenced_report",
+            "dataType": "string",
+            "sourceColumn": "referenced_report",
+            "summarizeBy": "none",
+            "lineageTag": "a8ea45d3-64f9-505a-b16c-74f5a2342063"
+          },
+          {
+            "name": "report_type",
+            "dataType": "string",
+            "sourceColumn": "report_type",
+            "summarizeBy": "none",
+            "lineageTag": "6f94a07d-1fa6-5f49-ac7d-bfc5f0caf59f"
+          },
+          {
+            "name": "start_date",
+            "dataType": "dateTime",
+            "sourceColumn": "start_date",
+            "summarizeBy": "none",
+            "lineageTag": "be88fa19-d607-53a8-bbb0-16cc4015501e"
+          },
+          {
+            "name": "expected_end_date",
+            "dataType": "dateTime",
+            "sourceColumn": "expected_end_date",
+            "summarizeBy": "none",
+            "lineageTag": "69e83a74-8e44-5f89-b863-5e544c28edae"
+          },
+          {
+            "name": "source_updated",
+            "dataType": "dateTime",
+            "sourceColumn": "source_updated",
+            "summarizeBy": "none",
+            "lineageTag": "3e30ddda-0e2b-5593-a7f0-dad4ad26b10c"
+          },
+          {
+            "name": "reason_type",
+            "dataType": "string",
+            "sourceColumn": "reason_type",
+            "summarizeBy": "none",
+            "lineageTag": "c43f0294-970e-5192-baaf-a35a058ed4c4"
+          },
+          {
+            "name": "product",
+            "dataType": "string",
+            "sourceColumn": "product",
+            "summarizeBy": "none",
+            "lineageTag": "e8e54f46-b58f-5af2-9d9a-c7649e12adef"
+          },
+          {
+            "name": "atc",
+            "dataType": "string",
+            "sourceColumn": "atc",
+            "summarizeBy": "none",
+            "lineageTag": "9645ac2b-bdff-5066-ba89-734be195e34a"
+          },
+          {
+            "name": "ingredient",
+            "dataType": "string",
+            "sourceColumn": "ingredient",
+            "summarizeBy": "none",
+            "lineageTag": "a69bf3e5-92e1-5eb2-b113-2e88dd3bff51"
+          },
+          {
+            "name": "hospital_relevant",
+            "dataType": "string",
+            "sourceColumn": "hospital_relevant",
+            "summarizeBy": "none",
+            "lineageTag": "39b776ca-25bb-5993-a1e1-486ef8659bcf"
+          },
+          {
+            "name": "manufacturer",
+            "dataType": "string",
+            "sourceColumn": "manufacturer",
+            "summarizeBy": "none",
+            "lineageTag": "0e36463b-5416-5660-ab57-bc5779b1dff8"
+          },
+          {
+            "name": "reason",
+            "dataType": "string",
+            "sourceColumn": "reason",
+            "summarizeBy": "none",
+            "lineageTag": "567f1027-585d-5e77-a186-344f6c549227"
+          },
+          {
+            "name": "reason_note",
+            "dataType": "string",
+            "sourceColumn": "reason_note",
+            "summarizeBy": "none",
+            "lineageTag": "0c7c8b2c-f267-5236-8094-497e5b673046"
+          },
+          {
+            "name": "first_reported",
+            "dataType": "dateTime",
+            "sourceColumn": "first_reported",
+            "summarizeBy": "none",
+            "lineageTag": "44648192-44f3-51d2-ac53-e19967bdf440"
+          },
+          {
+            "name": "dosage_form",
+            "dataType": "string",
+            "sourceColumn": "dosage_form",
+            "summarizeBy": "none",
+            "lineageTag": "52ea6e80-a3c0-56bc-bfa1-43b074da73cc"
+          },
+          {
+            "name": "classification",
+            "dataType": "string",
+            "sourceColumn": "classification",
+            "summarizeBy": "none",
+            "lineageTag": "22732fa4-6a5f-5506-9085-5c87c50336bf"
+          },
+          {
+            "name": "critical_flag",
+            "dataType": "int64",
+            "sourceColumn": "critical_flag",
+            "summarizeBy": "none",
+            "lineageTag": "d721c01b-21eb-56cc-92f8-5178bd24481c"
+          },
+          {
+            "name": "content_hash",
+            "dataType": "string",
+            "sourceColumn": "content_hash",
+            "summarizeBy": "none",
+            "lineageTag": "682b45b1-d909-558f-9e29-66eb50087b29"
+          },
+          {
+            "name": "observed_at",
+            "dataType": "string",
+            "sourceColumn": "observed_at",
+            "summarizeBy": "none",
+            "lineageTag": "f3d62f52-8879-5628-80b0-d49e80b7da3b"
+          }
+        ],
+        "lineageTag": "507246f2-b84f-563a-baae-ae13c06bf41e",
+        "partitions": [
+          {
+            "name": "FactObservation",
+            "mode": "import",
+            "source": {
+              "type": "m",
+              "expression": [
+                "let",
+                "    Source = Csv.Document(File.Contents(SourceFolder & \"/FactObservation.csv\"), [Delimiter=\",\", Encoding=65001, QuoteStyle=QuoteStyle.Csv]),",
+                "    Headers = Table.PromoteHeaders(Source, [PromoteAllScalars=true]),",
+                "    Typed = Table.TransformColumnTypes(Headers, {{\"snapshot_id\", type text}, {\"product_key\", type text}, {\"pzn\", type text}, {\"enr\", type text}, {\"report_id\", type text}, {\"referenced_report\", type text}, {\"report_type\", type text}, {\"start_date\", type text}, {\"expected_end_date\", type text}, {\"source_updated\", type text}, {\"reason_type\", type text}, {\"product\", type text}, {\"atc\", type text}, {\"ingredient\", type text}, {\"hospital_relevant\", type text}, {\"manufacturer\", type text}, {\"reason\", type text}, {\"reason_note\", type text}, {\"first_reported\", type text}, {\"dosage_form\", type text}, {\"classification\", type text}, {\"critical_flag\", Int64.Type}, {\"content_hash\", type text}, {\"observed_at\", type text}}, \"en-GB\"),",
+                "    Dates = Table.TransformColumns(Typed, {{\"start_date\", each if _ = \"\" then null else DateTime.From(Date.FromText(_, [Format=\"yyyy-MM-dd\", Culture=\"en-US\"])), type nullable datetime}, {\"expected_end_date\", each if _ = \"\" then null else DateTime.From(Date.FromText(_, [Format=\"yyyy-MM-dd\", Culture=\"en-US\"])), type nullable datetime}, {\"source_updated\", each if _ = \"\" then null else DateTime.From(Date.FromText(_, [Format=\"yyyy-MM-dd\", Culture=\"en-US\"])), type nullable datetime}, {\"first_reported\", each if _ = \"\" then null else DateTime.From(Date.FromText(_, [Format=\"yyyy-MM-dd\", Culture=\"en-US\"])), type nullable datetime}})",
+                "in",
+                "    Dates"
+              ]
+            }
+          }
+        ],
+        "measures": [
+          {
+            "name": "Package Observations",
+            "expression": "VAR Stamp = MAX(Snapshot[observed_at]) RETURN CALCULATE(COUNTROWS(FactObservation), Snapshot[observed_at] = Stamp)",
+            "formatString": "#,0",
+            "displayFolder": "Monitoring"
+          },
+          {
+            "name": "Source Reports",
+            "expression": "VAR Stamp = MAX(Snapshot[observed_at]) RETURN CALCULATE(DISTINCTCOUNT(FactObservation[report_id]), Snapshot[observed_at] = Stamp)",
+            "formatString": "#,0",
+            "displayFolder": "Monitoring"
+          },
+          {
+            "name": "Critical Observations",
+            "expression": "CALCULATE([Package Observations], FactObservation[critical_flag] = 1)",
+            "formatString": "#,0",
+            "displayFolder": "Monitoring"
+          },
+          {
+            "name": "Hospital Relevant",
+            "expression": "CALCULATE([Package Observations], FactObservation[hospital_relevant] = \"ja\")",
+            "formatString": "#,0",
+            "displayFolder": "Monitoring"
+          },
+          {
+            "name": "Source Rows",
+            "expression": "SUM(QualityAudit[source_rows])",
+            "formatString": "#,0",
+            "displayFolder": "Quality"
+          },
+          {
+            "name": "Accepted Rows",
+            "expression": "SUM(QualityAudit[accepted_rows])",
+            "formatString": "#,0",
+            "displayFolder": "Quality"
+          },
+          {
+            "name": "Rejected Rows",
+            "expression": "SUM(QualityAudit[rejected_rows])",
+            "formatString": "#,0",
+            "displayFolder": "Quality"
+          },
+          {
+            "name": "Acceptance Rate",
+            "expression": "DIVIDE([Accepted Rows], [Source Rows])",
+            "formatString": "0.0%",
+            "displayFolder": "Quality"
+          },
+          {
+            "name": "Snapshot Count",
+            "expression": "COUNTROWS(ALL(Snapshot))",
+            "formatString": "#,0",
+            "displayFolder": "Monitoring"
+          },
+          {
+            "name": "Change Rows",
+            "expression": "VAR Stamp = MAX(Snapshot[observed_at]) RETURN IF([Snapshot Count] < 2, BLANK(), CALCULATE(COUNTROWS(FactChange), Snapshot[observed_at] = Stamp))",
+            "formatString": "#,0",
+            "displayFolder": "Monitoring"
+          },
+          {
+            "name": "Baseline Note",
+            "expression": "IF([Snapshot Count] < 2, \"Baseline only: change history needs another observation.\", \"Changes compare observations; feed absence does not establish resolution.\")",
+            "displayFolder": "Monitoring"
+          }
+        ]
+      },
+      {
+        "name": "FactChange",
+        "columns": [
+          {
+            "name": "snapshot_id",
+            "dataType": "string",
+            "sourceColumn": "snapshot_id",
+            "summarizeBy": "none",
+            "lineageTag": "36f3e6a2-7d80-515d-a9ac-0958459be299"
+          },
+          {
+            "name": "product_key",
+            "dataType": "string",
+            "sourceColumn": "product_key",
+            "summarizeBy": "none",
+            "lineageTag": "1e63774d-f689-5759-8ac7-7a8cfd09b740"
+          },
+          {
+            "name": "change_type",
+            "dataType": "string",
+            "sourceColumn": "change_type",
+            "summarizeBy": "none",
+            "lineageTag": "5b80d8e4-09b3-5e0a-8723-aadee5e0ce61"
+          },
+          {
+            "name": "field",
+            "dataType": "string",
+            "sourceColumn": "field",
+            "summarizeBy": "none",
+            "lineageTag": "ddce2d3b-4d00-59b7-a609-b682cf4c6f33"
+          },
+          {
+            "name": "old_value",
+            "dataType": "string",
+            "sourceColumn": "old_value",
+            "summarizeBy": "none",
+            "lineageTag": "819db644-a99f-513a-aed3-0f717899259e"
+          },
+          {
+            "name": "new_value",
+            "dataType": "string",
+            "sourceColumn": "new_value",
+            "summarizeBy": "none",
+            "lineageTag": "43d9789c-1332-5e6c-9621-f8d4e58734c4"
+          },
+          {
+            "name": "observed_at",
+            "dataType": "string",
+            "sourceColumn": "observed_at",
+            "summarizeBy": "none",
+            "lineageTag": "82fe3478-723e-514d-a9e6-adf031834b9d"
+          }
+        ],
+        "lineageTag": "ee07f34a-7635-554a-bf67-d1a963d35d6b",
+        "partitions": [
+          {
+            "name": "FactChange",
+            "mode": "import",
+            "source": {
+              "type": "m",
+              "expression": [
+                "let",
+                "    Source = Csv.Document(File.Contents(SourceFolder & \"/FactChange.csv\"), [Delimiter=\",\", Encoding=65001, QuoteStyle=QuoteStyle.Csv]),",
+                "    Headers = Table.PromoteHeaders(Source, [PromoteAllScalars=true]),",
+                "    Typed = Table.TransformColumnTypes(Headers, {{\"snapshot_id\", type text}, {\"product_key\", type text}, {\"change_type\", type text}, {\"field\", type text}, {\"old_value\", type text}, {\"new_value\", type text}, {\"observed_at\", type text}}, \"en-GB\")",
+                "in",
+                "    Typed"
+              ]
+            }
+          }
+        ]
+      },
+      {
+        "name": "Snapshot",
+        "columns": [
+          {
+            "name": "snapshot_id",
+            "dataType": "string",
+            "sourceColumn": "snapshot_id",
+            "summarizeBy": "none",
+            "lineageTag": "9e9b8494-34c3-5ce8-a527-92b4446f090c"
+          },
+          {
+            "name": "observed_at",
+            "dataType": "string",
+            "sourceColumn": "observed_at",
+            "summarizeBy": "none",
+            "lineageTag": "fcc42c7b-3fdd-5289-9a9c-b3a3940bd373"
+          },
+          {
+            "name": "source_sha256",
+            "dataType": "string",
+            "sourceColumn": "source_sha256",
+            "summarizeBy": "none",
+            "lineageTag": "b36633a0-4eb9-555a-a75f-8de9a058ed17"
+          },
+          {
+            "name": "raw_path",
+            "dataType": "string",
+            "sourceColumn": "raw_path",
+            "summarizeBy": "none",
+            "lineageTag": "783f9495-74ae-548e-9231-6a0b9ae9ca50"
+          },
+          {
+            "name": "source_url",
+            "dataType": "string",
+            "sourceColumn": "source_url",
+            "summarizeBy": "none",
+            "lineageTag": "63e5d609-efb3-518b-b333-9a4eb2caa397"
+          }
+        ],
+        "lineageTag": "bdfe410d-3173-5326-a0ff-b262ebd2efaf",
+        "partitions": [
+          {
+            "name": "Snapshot",
+            "mode": "import",
+            "source": {
+              "type": "m",
+              "expression": [
+                "let",
+                "    Source = Csv.Document(File.Contents(SourceFolder & \"/Snapshot.csv\"), [Delimiter=\",\", Encoding=65001, QuoteStyle=QuoteStyle.Csv]),",
+                "    Headers = Table.PromoteHeaders(Source, [PromoteAllScalars=true]),",
+                "    Typed = Table.TransformColumnTypes(Headers, {{\"snapshot_id\", type text}, {\"observed_at\", type text}, {\"source_sha256\", type text}, {\"raw_path\", type text}, {\"source_url\", type text}}, \"en-GB\")",
+                "in",
+                "    Typed"
+              ]
+            }
+          }
+        ]
+      },
+      {
+        "name": "QualityAudit",
+        "columns": [
+          {
+            "name": "run_id",
+            "dataType": "string",
+            "sourceColumn": "run_id",
+            "summarizeBy": "none",
+            "lineageTag": "39f0fbca-9c2b-59a4-8d9e-0fc5f684ddae"
+          },
+          {
+            "name": "observed_at",
+            "dataType": "string",
+            "sourceColumn": "observed_at",
+            "summarizeBy": "none",
+            "lineageTag": "f44fad40-3fef-57c0-9114-858171061e0b"
+          },
+          {
+            "name": "source_sha256",
+            "dataType": "string",
+            "sourceColumn": "source_sha256",
+            "summarizeBy": "none",
+            "lineageTag": "b6be8fe3-b6b0-54a8-95b8-11ca5a03d5ae"
+          },
+          {
+            "name": "status",
+            "dataType": "string",
+            "sourceColumn": "status",
+            "summarizeBy": "none",
+            "lineageTag": "c333a5bf-d609-5f56-bf0e-da803f14e2b5"
+          },
+          {
+            "name": "source_rows",
+            "dataType": "int64",
+            "sourceColumn": "source_rows",
+            "summarizeBy": "none",
+            "lineageTag": "0bdd257e-d92c-5263-a97d-af5c98018f7f"
+          },
+          {
+            "name": "accepted_rows",
+            "dataType": "int64",
+            "sourceColumn": "accepted_rows",
+            "summarizeBy": "none",
+            "lineageTag": "de03a072-ba2c-5bb1-892f-5b11977b6dd1"
+          },
+          {
+            "name": "rejected_rows",
+            "dataType": "int64",
+            "sourceColumn": "rejected_rows",
+            "summarizeBy": "none",
+            "lineageTag": "c97d000b-ef1b-5d8e-beef-7ef99119f94c"
+          },
+          {
+            "name": "error",
+            "dataType": "string",
+            "sourceColumn": "error",
+            "summarizeBy": "none",
+            "lineageTag": "5cdad7de-3768-592e-ba26-40b128dc1d8a"
+          },
+          {
+            "name": "source_url",
+            "dataType": "string",
+            "sourceColumn": "source_url",
+            "summarizeBy": "none",
+            "lineageTag": "e65133a9-ded3-5274-84eb-4fd3f69b286e"
+          }
+        ],
+        "lineageTag": "b2cb6039-eb3d-505b-9777-d4c7a5a964c9",
+        "partitions": [
+          {
+            "name": "QualityAudit",
+            "mode": "import",
+            "source": {
+              "type": "m",
+              "expression": [
+                "let",
+                "    Source = Csv.Document(File.Contents(SourceFolder & \"/QualityAudit.csv\"), [Delimiter=\",\", Encoding=65001, QuoteStyle=QuoteStyle.Csv]),",
+                "    Headers = Table.PromoteHeaders(Source, [PromoteAllScalars=true]),",
+                "    Typed = Table.TransformColumnTypes(Headers, {{\"run_id\", type text}, {\"observed_at\", type text}, {\"source_sha256\", type text}, {\"status\", type text}, {\"source_rows\", Int64.Type}, {\"accepted_rows\", Int64.Type}, {\"rejected_rows\", Int64.Type}, {\"error\", type text}, {\"source_url\", type text}}, \"en-GB\")",
+                "in",
+                "    Typed"
+              ]
+            }
+          }
+        ]
+      },
+      {
+        "name": "DimProduct",
+        "columns": [
+          {
+            "name": "product_key",
+            "dataType": "string",
+            "sourceColumn": "product_key",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "pzn",
+            "dataType": "string",
+            "sourceColumn": "pzn",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "enr",
+            "dataType": "string",
+            "sourceColumn": "enr",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "product",
+            "dataType": "string",
+            "sourceColumn": "product",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "ingredient",
+            "dataType": "string",
+            "sourceColumn": "ingredient",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "manufacturer",
+            "dataType": "string",
+            "sourceColumn": "manufacturer",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "atc",
+            "dataType": "string",
+            "sourceColumn": "atc",
+            "summarizeBy": "none"
+          }
+        ],
+        "partitions": [
+          {
+            "name": "DimProduct",
+            "mode": "import",
+            "source": {
+              "type": "m",
+              "expression": [
+                "let",
+                "    LatestFirst = Table.Sort(FactObservation, {{\"observed_at\", Order.Descending}}),",
+                "    Source = Table.SelectColumns(Table.Buffer(LatestFirst), {\"product_key\", \"pzn\", \"enr\", \"product\", \"ingredient\", \"manufacturer\", \"atc\"}),",
+                "    DistinctProducts = Table.Distinct(Source, {\"product_key\"})",
+                "in",
+                "    DistinctProducts"
+              ]
+            }
+          }
+        ]
+      }
+    ],
+    "relationships": [
+      {
+        "name": "7fec3b4a-9eb7-59e2-b362-49df63d6229f",
+        "fromTable": "FactObservation",
+        "fromColumn": "snapshot_id",
+        "toTable": "Snapshot",
+        "toColumn": "snapshot_id",
+        "crossFilteringBehavior": "oneDirection"
+      },
+      {
+        "name": "ab46f09d-8958-50d4-b1a9-694fa6622db3",
+        "fromTable": "FactChange",
+        "fromColumn": "snapshot_id",
+        "toTable": "Snapshot",
+        "toColumn": "snapshot_id",
+        "crossFilteringBehavior": "oneDirection"
+      },
+      {
+        "name": "e8c9962d-ccf9-56c2-8d72-ca9393fce456",
+        "fromTable": "FactObservation",
+        "fromColumn": "product_key",
+        "toTable": "DimProduct",
+        "toColumn": "product_key",
+        "crossFilteringBehavior": "oneDirection"
+      },
+      {
+        "name": "0d01790e-6b2a-5b18-b974-49553bc98b74",
+        "fromTable": "FactChange",
+        "fromColumn": "product_key",
+        "toTable": "DimProduct",
+        "toColumn": "product_key",
+        "crossFilteringBehavior": "oneDirection"
+      }
+    ]
+  }
+}

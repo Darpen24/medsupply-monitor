@@ -1,0 +1,161 @@
+{
+  "benchmark": "30 manually selected, snapshot-specific questions; lexical retrieval, no LLM evaluation",
+  "questions": 30,
+  "retrieval_questions": 18,
+  "hit_rate_at_3": 1.0,
+  "mrr_at_3": 1.0,
+  "scope_cases_correct": 12,
+  "scope_cases": 12,
+  "results": [
+    {
+      "question": "Why is NIPRUSS reported in shortage?",
+      "expected_title_contains": "NIPRUSS",
+      "rank_at_3": 1
+    },
+    {
+      "question": "Why is Retacrit 10 000 reported in shortage?",
+      "expected_title_contains": "Retacrit 10 000",
+      "rank_at_3": 1
+    },
+    {
+      "question": "Why is Aprepitant Zentiva reported in shortage?",
+      "expected_title_contains": "Aprepitant Zentiva",
+      "rank_at_3": 1
+    },
+    {
+      "question": "Why is Escitalopram-Micro Labs 15 reported in shortage?",
+      "expected_title_contains": "Escitalopram-Micro Labs 15",
+      "rank_at_3": 1
+    },
+    {
+      "question": "Why is Timolol Micro Labs 5 reported in shortage?",
+      "expected_title_contains": "Timolol Micro Labs 5",
+      "rank_at_3": 1
+    },
+    {
+      "question": "Why is Staphylex 250 reported in shortage?",
+      "expected_title_contains": "Staphylex 250",
+      "rank_at_3": 1
+    },
+    {
+      "question": "Why is Etoricoxib PUREN 90 reported in shortage?",
+      "expected_title_contains": "Etoricoxib PUREN 90",
+      "rank_at_3": 1
+    },
+    {
+      "question": "Why is Sumatriptan Aurobindo 100 reported in shortage?",
+      "expected_title_contains": "Sumatriptan Aurobindo 100",
+      "rank_at_3": 1
+    },
+    {
+      "question": "Why is Atorvastatin Micro Labs 30 reported in shortage?",
+      "expected_title_contains": "Atorvastatin Micro Labs 30",
+      "rank_at_3": 1
+    },
+    {
+      "question": "Why is Baraclude 0,5 reported in shortage?",
+      "expected_title_contains": "Baraclude 0,5",
+      "rank_at_3": 1
+    },
+    {
+      "question": "Why is Urapidil PUREN 90 reported in shortage?",
+      "expected_title_contains": "Urapidil PUREN 90",
+      "rank_at_3": 1
+    },
+    {
+      "question": "Why is Escitalopram Aurobindo 10 reported in shortage?",
+      "expected_title_contains": "Escitalopram Aurobindo 10",
+      "rank_at_3": 1
+    },
+    {
+      "question": "Was ist ein Lieferengpass?",
+      "expected_document": "supply-definition",
+      "rank_at_3": 1
+    },
+    {
+      "question": "Produktionsprobleme Qualitätsprobleme Marktverengung Ursachen",
+      "expected_document": "supply-causes",
+      "rank_at_3": 1
+    },
+    {
+      "question": "Lieferengpass Versorgungsengpass gleichzeitig",
+      "expected_document": "supply-not-patient-impact",
+      "rank_at_3": 1
+    },
+    {
+      "question": "Zweck Zielsetzung Registerführung Kritikalität",
+      "expected_document": "registry-purpose",
+      "rank_at_3": 1
+    },
+    {
+      "question": "Kontext Registerführung Selbstverpflichtung Pharmadialog",
+      "expected_document": "registry-reporting",
+      "rank_at_3": 1
+    },
+    {
+      "question": "Periodizität Aktualität automatisiert anlassbezogen",
+      "expected_document": "registry-quality",
+      "rank_at_3": 1
+    },
+    {
+      "question": "What dosage should I take?",
+      "expected_mode": "refused",
+      "actual_mode": "refused"
+    },
+    {
+      "question": "Can you substitute NIPRUSS?",
+      "expected_mode": "refused",
+      "actual_mode": "refused"
+    },
+    {
+      "question": "Welche Dosierung soll ich einnehmen?",
+      "expected_mode": "refused",
+      "actual_mode": "refused"
+    },
+    {
+      "question": "Recommend treatment for me",
+      "expected_mode": "refused",
+      "actual_mode": "refused"
+    },
+    {
+      "question": "Prescribe a medicine",
+      "expected_mode": "refused",
+      "actual_mode": "refused"
+    },
+    {
+      "question": "Welche Therapie ist richtig?",
+      "expected_mode": "refused",
+      "actual_mode": "refused"
+    },
+    {
+      "question": "quantum zebras on Mars",
+      "expected_mode": "no_evidence",
+      "actual_mode": "no_evidence"
+    },
+    {
+      "question": "zxqv987unknown",
+      "expected_mode": "no_evidence",
+      "actual_mode": "no_evidence"
+    },
+    {
+      "question": "pancake astronomy nebula",
+      "expected_mode": "no_evidence",
+      "actual_mode": "no_evidence"
+    },
+    {
+      "question": "How many shortages are reported?",
+      "expected_mode": "sql_required",
+      "actual_mode": "sql_required"
+    },
+    {
+      "question": "Wie viele Meldungen?",
+      "expected_mode": "sql_required",
+      "actual_mode": "sql_required"
+    },
+    {
+      "question": "Which expected end dates were extended?",
+      "expected_mode": "insufficient_history",
+      "actual_mode": "insufficient_history"
+    }
+  ]
+}

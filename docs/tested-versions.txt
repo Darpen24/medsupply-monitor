@@ -1,0 +1,11 @@
+# Versions observed during this build; optional tools are not required for the base application.
+fastapi==0.162.0
+uvicorn==0.54.0
+pytest==9.2.0
+httpx==0.28.1
+ruff==0.17.3
+jsonschema==4.26.0
+psycopg==3.3.6
+dbt-postgres==1.11.0
+dbt-core==1.13.0b1
+playwright==1.51.0  # requested Python package; loaded bundled driver reports 1.51.1

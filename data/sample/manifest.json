@@ -1,0 +1,9 @@
+{
+  "source_url": "https://anwendungen.pharmnet-bund.de/lieferengpassmeldungen/public/csv",
+  "observed_at": "2026-10-28T06:11:05.006816+00:00",
+  "sha256": "d54517618285ca4a5cb2f4335898cac93ff39ee980a19284778538d1e6095ab0",
+  "source_rows": 896,
+  "accepted_rows": 893,
+  "rejected_rows": 3,
+  "note": "Unmodified official source snapshot; attribution and original source terms apply."
+}

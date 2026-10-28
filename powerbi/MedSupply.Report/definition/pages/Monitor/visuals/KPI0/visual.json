@@ -1,0 +1,60 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.13.0/schema.json",
+  "name": "KPI0",
+  "position": {
+    "x": 28,
+    "y": 138,
+    "width": 290,
+    "height": 105,
+    "z": 166,
+    "tabOrder": 166
+  },
+  "visual": {
+    "visualType": "card",
+    "drillFilterOtherVisuals": true,
+    "query": {
+      "queryState": {
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "FactObservation"
+                    }
+                  },
+                  "Property": "Package Observations"
+                }
+              },
+              "queryRef": "FactObservation.Package Observations",
+              "nativeQueryRef": "Package Observations"
+            }
+          ]
+        }
+      }
+    },
+    "visualContainerObjects": {
+      "title": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "text": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Package Observations'"
+                }
+              }
+            }
+          }
+        }
+      ]
+    }
+  }
+}

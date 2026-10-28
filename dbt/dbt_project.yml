@@ -1,0 +1,9 @@
+name: medsupply
+version: '1.0.0'
+config-version: 2
+profile: medsupply
+model-paths: [models]
+test-paths: [tests]
+models:
+  medsupply:
+    +materialized: view

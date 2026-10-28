@@ -1,0 +1,38 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.13.0/schema.json",
+  "name": "Baseline",
+  "position": {
+    "x": 28,
+    "y": 675,
+    "width": 1200,
+    "height": 65,
+    "z": 703,
+    "tabOrder": 703
+  },
+  "visual": {
+    "visualType": "card",
+    "drillFilterOtherVisuals": true,
+    "query": {
+      "queryState": {
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "FactObservation"
+                    }
+                  },
+                  "Property": "Baseline Note"
+                }
+              },
+              "queryRef": "FactObservation.Baseline Note",
+              "nativeQueryRef": "Baseline Note"
+            }
+          ]
+        }
+      }
+    }
+  }
+}

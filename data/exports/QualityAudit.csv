@@ -1,0 +1,2 @@
+run_id,observed_at,source_sha256,status,source_rows,accepted_rows,rejected_rows,error,source_url
+f8a9c323507fa1e0fe2fbdc7,2026-10-28T06:11:05.006816+00:00,d54517618285ca4a5cb2f4335898cac93ff39ee980a19284778538d1e6095ab0,success,896,893,3,,https://anwendungen.pharmnet-bund.de/lieferengpassmeldungen/public/csv

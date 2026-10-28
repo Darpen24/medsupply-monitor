@@ -1,0 +1,38 @@
+version: 2
+sources:
+  - name: operational
+    schema: public
+    tables:
+      - name: observations
+      - name: snapshots
+      - name: changes
+      - name: runs
+models:
+  - name: dim_product
+    columns:
+      - name: product_key
+        data_tests: [unique, not_null]
+  - name: dim_snapshot
+    columns:
+      - name: snapshot_id
+        data_tests: [unique, not_null]
+  - name: fact_observation
+    columns:
+      - name: observation_id
+        data_tests: [unique, not_null]
+      - name: product_key
+        data_tests:
+          - relationships:
+              arguments:
+                to: ref('dim_product')
+                field: product_key
+      - name: snapshot_id
+        data_tests:
+          - relationships:
+              arguments:
+                to: ref('dim_snapshot')
+                field: snapshot_id
+  - name: mart_current_shortages
+    columns:
+      - name: product_key
+        data_tests: [unique, not_null]

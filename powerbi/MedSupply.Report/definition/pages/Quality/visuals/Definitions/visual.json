@@ -1,0 +1,38 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.13.0/schema.json",
+  "name": "Definitions",
+  "position": {
+    "x": 28,
+    "y": 605,
+    "width": 1200,
+    "height": 140,
+    "z": 633,
+    "tabOrder": 633
+  },
+  "visual": {
+    "visualType": "textbox",
+    "drillFilterOtherVisuals": true,
+    "objects": {
+      "general": [
+        {
+          "properties": {
+            "paragraphs": [
+              {
+                "textRuns": [
+                  {
+                    "value": "Quality gate: >5% rejected rows prevents publication. Conflicting product identities are quarantined together. First observation is a baseline. A missing record is not evidence of resolution. Search application: published text with report IDs and source dates.",
+                    "textStyle": {
+                      "fontFamily": "Segoe UI",
+                      "fontSize": "11pt",
+                      "color": "#193B39"
+                    }
+                  }
+                ]
+              }
+            ]
+          }
+        }
+      ]
+    }
+  }
+}

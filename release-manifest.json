@@ -1,0 +1,570 @@
+{
+  "project": "MedSupply Monitor",
+  "build_date": "2026-10-28",
+  "tests": {
+    "passed": 35,
+    "skipped": 1
+  },
+  "files": [
+    {
+      "path": ".env.example",
+      "sha256": "0aac56a9c03fcb39cd9062df0bb095695d1f3d763f53825970d2a18ce4571fdb",
+      "bytes": 382
+    },
+    {
+      "path": ".github/workflows/ci.yml",
+      "sha256": "374da57452cee5ffb1b082295c974d615f51db4ec44d5ba5551339d86c747fa4",
+      "bytes": 1418
+    },
+    {
+      "path": ".gitignore",
+      "sha256": "a697b9fbcadcd5018d62931220f62bfd01485d7ec92f6ef97e151efaed360202",
+      "bytes": 151
+    },
+    {
+      "path": "LICENSE",
+      "sha256": "63db88dfc7d54c9450e469ce38e8a7542d18c56deba0258730f05ddd0b84fd59",
+      "bytes": 1331
+    },
+    {
+      "path": "README.md",
+      "sha256": "03f8c0620103b3bc516aaf06fc037aee248f6a9892d04fcfc38ac0c514dbc741",
+      "bytes": 9601
+    },
+    {
+      "path": "START_HERE.md",
+      "sha256": "7308e8af508b8cfaae8cefb272f42737bf233595f85a129a7c66eb21867045a6",
+      "bytes": 4924
+    },
+    {
+      "path": "compose.yaml",
+      "sha256": "1d3e072f89610d5fb43edbf0c972bd692b990e1d827033c84ab6c2cf4a6a0563",
+      "bytes": 448
+    },
+    {
+      "path": "corpus/documents.json",
+      "sha256": "d095aa43a034f8201a225e0bd4c04df18823de9766f73f6d3ca4350791d45df9",
+      "bytes": 5380
+    },
+    {
+      "path": "corpus/manifest.json",
+      "sha256": "c2048a6ece7390b19715b61203f4fe61a6af3ebe4cef8b44a0f33423a5f9feb6",
+      "bytes": 504
+    },
+    {
+      "path": "corpus/registry.html",
+      "sha256": "afebdef04bebe470da91f65e1cdbcb6ce444b25735096b89979e2f76e20923d4",
+      "bytes": 253078
+    },
+    {
+      "path": "corpus/shortages.html",
+      "sha256": "b583b91c2d153d24cc21f11f39c0b133214540bf67057694144d5139d361f380",
+      "bytes": 76187
+    },
+    {
+      "path": "data/exports/FactChange.csv",
+      "sha256": "a093eda4fc5d4a24242a16e1c315d8602f6b26203bf2ce2b017fa1a293d90004",
+      "bytes": 75
+    },
+    {
+      "path": "data/exports/FactObservation.csv",
+      "sha256": "d9ae8436961a8ccd997a52f81154f5f73addf46d33391aef839eab4880f05b8b",
+      "bytes": 410438
+    },
+    {
+      "path": "data/exports/QualityAudit.csv",
+      "sha256": "2acc1dc0a8b8f91d5e8503a5a7ee96294c468b477ba2178837cf4eef6221f1eb",
+      "bytes": 312
+    },
+    {
+      "path": "data/exports/Snapshot.csv",
+      "sha256": "1980357acc58a451a59b787c8745026b62c6d9bd5fb4de0447485d68282ea87a",
+      "bytes": 332
+    },
+    {
+      "path": "data/exports/summary.json",
+      "sha256": "d07c5612e8d9f854e8ec9313a80b0835ebbf4edbd71c0f72375bbc18b071fcf8",
+      "bytes": 1067
+    },
+    {
+      "path": "data/sample/bfarm-2026-10-28.csv",
+      "sha256": "d54517618285ca4a5cb2f4335898cac93ff39ee980a19284778538d1e6095ab0",
+      "bytes": 328412
+    },
+    {
+      "path": "data/sample/manifest.json",
+      "sha256": "9021e9a8667220fd74c338228c905ce128589246e75cd2b7271d69285fd9f495",
+      "bytes": 388
+    },
+    {
+      "path": "dbt/.user.yml",
+      "sha256": "0ea3f577dbd8e9e273da89fa776790b59a3f5bbd9ec1a50bafbd2b4369b18e64",
+      "bytes": 41
+    },
+    {
+      "path": "dbt/dbt_project.yml",
+      "sha256": "beccc39fcfdf8a6dc5dd9e21db35c86730999771ceb332bc2901d5a771a513f3",
+      "bytes": 157
+    },
+    {
+      "path": "dbt/models/dim_product.sql",
+      "sha256": "47b1aed49747010e4ab0e61d7e04ce78f580ccbf993eeec8aff24c22333eae51",
+      "bytes": 366
+    },
+    {
+      "path": "dbt/models/dim_snapshot.sql",
+      "sha256": "5c733e011ac7dad272fd0f5e73135e6bd9f635524931ab144ca62e9c2042f808",
+      "bytes": 105
+    },
+    {
+      "path": "dbt/models/fact_change.sql",
+      "sha256": "e2f3bfb9038605d46e116341c06f1ab47152631b954117816f5f361b6a5d025e",
+      "bytes": 292
+    },
+    {
+      "path": "dbt/models/fact_observation.sql",
+      "sha256": "4da38aee09d3b65bb4574390432137e3376907f71d849b2939de6fe3955da656",
+      "bytes": 187
+    },
+    {
+      "path": "dbt/models/mart_current_shortages.sql",
+      "sha256": "9d51e36f439bb9dab566fd353b292e9b62de44824bdcaea559d8d68a567c309b",
+      "bytes": 121
+    },
+    {
+      "path": "dbt/models/mart_quality.sql",
+      "sha256": "af90c535e5929352a99e9a4b790010b04864008a5fdc12acb9cef4d6ab5a8ed6",
+      "bytes": 124
+    },
+    {
+      "path": "dbt/models/sources.yml",
+      "sha256": "3ef1d04c539d6aeb050f198c6da426c2575d71114f24510d52682bd5882505de",
+      "bytes": 938
+    },
+    {
+      "path": "dbt/profiles.yml",
+      "sha256": "3e3f1b821a32312d27b20d814c0badc876e98b86e5f680a008c520d7cbf41f43",
+      "bytes": 387
+    },
+    {
+      "path": "dbt/tests/reconcile_published_snapshots.sql",
+      "sha256": "3bc100a3e53280832becfcd62c49cb50d3a82c2fc59bdcc8516ef8df678c7e12",
+      "bytes": 282
+    },
+    {
+      "path": "dbt/tests/reconcile_quality.sql",
+      "sha256": "0c2c255272ab6c6f355440be9781daa63f298e907d9a70a3a3dc739d7e0c7590",
+      "bytes": 77
+    },
+    {
+      "path": "docs/architecture.md",
+      "sha256": "4b745a33b6d6d17d670d2c05f41b0922e456792d2fb71876be30e582907c72f0",
+      "bytes": 5624
+    },
+    {
+      "path": "docs/data-contract.md",
+      "sha256": "5e44bf7d8b10362f85352f66d3b745d59e53a4ba3280c1addd7d69c697f0769c",
+      "bytes": 5535
+    },
+    {
+      "path": "docs/evaluation.json",
+      "sha256": "0d587f77e47c36a70884b9259169c72d6085e6741caeea5e257072eef5d7d274",
+      "bytes": 4682
+    },
+    {
+      "path": "docs/powerbi-validation.json",
+      "sha256": "0cf0d913958a3992512af6178b0e125eed7eb14b14c6692095d600e1f7d30a5f",
+      "bytes": 173
+    },
+    {
+      "path": "docs/previews/browser-validation.json",
+      "sha256": "9b07dfbe53f6e4387735345af3b96c6953d8c62cc1a615de42be5de3bcde160d",
+      "bytes": 279
+    },
+    {
+      "path": "docs/previews/evidence.png",
+      "sha256": "f7120f77ad668e6296725c05085ddee014f27e3323655e92eec7aba51b59211f",
+      "bytes": 160291
+    },
+    {
+      "path": "docs/previews/mobile.png",
+      "sha256": "01504d4463fdcbe235a3c9aef503e36d0ef937d284c3ee677a3b2e1df591a4ad",
+      "bytes": 98440
+    },
+    {
+      "path": "docs/previews/monitor.png",
+      "sha256": "93894162baac57e0b7b7cf7e49077502ed908449afe814c874bab7e3d4b38ac0",
+      "bytes": 299172
+    },
+    {
+      "path": "docs/previews/quality.png",
+      "sha256": "9b7324370fdb9a00b4327c8a0874e0603dd21c5851064b224b0a1d633af1acb4",
+      "bytes": 128086
+    },
+    {
+      "path": "docs/schemas/03b94f622daec778.json",
+      "sha256": "eaa74ea4f7c4ba74710addd6220c9b4f7626ed373b6b351a9824d1bd78bfedc2",
+      "bytes": 5841
+    },
+    {
+      "path": "docs/schemas/058924a98f7826d3.json",
+      "sha256": "abc46fc380f0766a6e8b76cda5f8d1d9b9565818f9eea5136bdfffed613ef681",
+      "bytes": 32516
+    },
+    {
+      "path": "docs/schemas/0b9f8a866310d44d.json",
+      "sha256": "7f9fec3e6cb0bd204330eed74a7fc5a609dbaba2be7432adf89da90d784f015e",
+      "bytes": 59137
+    },
+    {
+      "path": "docs/schemas/4e00ed342fd7963f.json",
+      "sha256": "3616692421d52ed8e678cd26b09d3ca06c5f191bbdb0a3abb80b156a202b2c38",
+      "bytes": 2042
+    },
+    {
+      "path": "docs/schemas/577eb4db5688c5be.json",
+      "sha256": "1dae30c8b27b214204cbb742612aa37a765da62d4310bc7354aa7fa02559cecb",
+      "bytes": 10493
+    },
+    {
+      "path": "docs/schemas/ad6df07a3e99c7a5.json",
+      "sha256": "12c9228b7d71d15e45fa297966963ee0bd794c86611ea743defcf44c5ba03181",
+      "bytes": 19006
+    },
+    {
+      "path": "docs/schemas/b0f4d20273f04f46.json",
+      "sha256": "68be1753def1389ed1b42f1dbfc0d637d578e3b9363ebfc222bd7d376e7de648",
+      "bytes": 3116
+    },
+    {
+      "path": "docs/schemas/bfc24a400e44c23b.json",
+      "sha256": "fee886d48482f3bf4a2ecd807789f8808884b911311a40a0cfdcc2da83fa4ca7",
+      "bytes": 901
+    },
+    {
+      "path": "docs/schemas/ceaec1e19ff71f74.json",
+      "sha256": "c5eb3df1e92ff44da1a85a378559154bc26e52920bd0e12c0e3c8e9b5e7647e1",
+      "bytes": 2573
+    },
+    {
+      "path": "docs/schemas/d978f94784533b37.json",
+      "sha256": "14b73dda3fe976b36010d53153eb20b7c8c72ee5d0fa535918078a536d718851",
+      "bytes": 1330
+    },
+    {
+      "path": "docs/schemas/ff91d2fd85c4b04e.json",
+      "sha256": "f46cbfa4a074473a4cde44292705dacf71a24e1497e1915de6553c13b6f53811",
+      "bytes": 22714
+    },
+    {
+      "path": "docs/schemas/page.json",
+      "sha256": "a21c2186248479bb9fa7a68aba9715b14d1ad19c03afcf164945e5cadd3fd72d",
+      "bytes": 16492
+    },
+    {
+      "path": "docs/schemas/pages.json",
+      "sha256": "d929fb535d871543294ecbecaaf45a5c983b09217b9976335ca4b6e0d62251bc",
+      "bytes": 1206
+    },
+    {
+      "path": "docs/schemas/pbip.json",
+      "sha256": "07e074b041ab65cb78f5a6978b8c0ac8855648e9e5e5b6adaf1781320cc3a4cc",
+      "bytes": 3625
+    },
+    {
+      "path": "docs/schemas/pbir.json",
+      "sha256": "37e3fa3e8d30bd8abf1d8550aec75671476a0255b7d88ef8278581a74a5ef6a5",
+      "bytes": 2618
+    },
+    {
+      "path": "docs/schemas/pbism.json",
+      "sha256": "e31a2811463f240e15eebc5ea149216e47a3e4e9799eed3249a8ab7044db80d3",
+      "bytes": 1686
+    },
+    {
+      "path": "docs/schemas/report.json",
+      "sha256": "06ddadea9b99d0da2f483a51ba0b5111880ed0324a6d48dd9b4eaac70d731fe3",
+      "bytes": 13728
+    },
+    {
+      "path": "docs/schemas/version.json",
+      "sha256": "852c18edb4b15e00f1ed777ad85314c9a7f1d1644d9f3a8fb1ea506eb04ebce2",
+      "bytes": 811
+    },
+    {
+      "path": "docs/schemas/visual.json",
+      "sha256": "a237cbbddb9d9b3a36e9cf9db80a1ef988fca6509a0ed6740e308dd5ea6bb732",
+      "bytes": 7833
+    },
+    {
+      "path": "docs/tested-versions.txt",
+      "sha256": "9317bc8ce7a4d468ee48e0c31ad839d3bfb38fd94bbfa66ae4bc9a115026f7a9",
+      "bytes": 330
+    },
+    {
+      "path": "docs/validation.md",
+      "sha256": "c3fa477659ee219615d5553f69ed550c768895f2e9915474c91926a2a9c0258c",
+      "bytes": 5150
+    },
+    {
+      "path": "powerbi/MedSupply.Report/definition/pages/Monitor/page.json",
+      "sha256": "6fb4cfa3c341460e695fa4242f01f7334e650c1d8fd5e0f5f614d84dfddaa842",
+      "bytes": 246
+    },
+    {
+      "path": "powerbi/MedSupply.Report/definition/pages/Monitor/visuals/Baseline/visual.json",
+      "sha256": "530c9df5aacd16cbedcf5d1b7c221d5bca6bb09ef50b2f5a4ec05a47917f2e6e",
+      "bytes": 903
+    },
+    {
+      "path": "powerbi/MedSupply.Report/definition/pages/Monitor/visuals/KPI0/visual.json",
+      "sha256": "a88c1e16e33ee68d192e0bd8fc90722f0081f83ee68d6d9a9c4c78e5ef6c3f9d",
+      "bytes": 1375
+    },
+    {
+      "path": "powerbi/MedSupply.Report/definition/pages/Monitor/visuals/KPI1/visual.json",
+      "sha256": "7e33341c79715d261bb62e6185f81cd4f6baef0a9037db72be27b8e2f50795ff",
+      "bytes": 1352
+    },
+    {
+      "path": "powerbi/MedSupply.Report/definition/pages/Monitor/visuals/KPI2/visual.json",
+      "sha256": "c5094c072510b1f251eefe1ace8c401cdc76f0f1edf14ead9b545ee0a3ff55ad",
+      "bytes": 1380
+    },
+    {
+      "path": "powerbi/MedSupply.Report/definition/pages/Monitor/visuals/KPI3/visual.json",
+      "sha256": "c216ef293908651354ad3369e83185da1a0462916362efde1c53fd1127f79b35",
+      "bytes": 1366
+    },
+    {
+      "path": "powerbi/MedSupply.Report/definition/pages/Monitor/visuals/Manufacturers/visual.json",
+      "sha256": "318e3affbb3cfd03a040377530d99b4685b8b89ac69bab6114b14ef9cc9458c2",
+      "bytes": 1909
+    },
+    {
+      "path": "powerbi/MedSupply.Report/definition/pages/Monitor/visuals/Reasons/visual.json",
+      "sha256": "48cc54ae85b232b868e4e2087d3ab463ff0a3a54e377b26ec640d93be327f054",
+      "bytes": 1901
+    },
+    {
+      "path": "powerbi/MedSupply.Report/definition/pages/Monitor/visuals/SnapshotFilter/visual.json",
+      "sha256": "fe4a75ee55a1e33602b788e438637eba36b56d4835bee21187942d4407f555ab",
+      "bytes": 1352
+    },
+    {
+      "path": "powerbi/MedSupply.Report/definition/pages/Monitor/visuals/Subtitle/visual.json",
+      "sha256": "e2bf7ade9bab87d1f2de24114484fbd3c0843555ac4aaa896ab10827e09a75c7",
+      "bytes": 962
+    },
+    {
+      "path": "powerbi/MedSupply.Report/definition/pages/Monitor/visuals/Title/visual.json",
+      "sha256": "56a6bf74e52925885b39d897a0fcc5f1b4525c4967444d3509c243ca3742147b",
+      "bytes": 869
+    },
+    {
+      "path": "powerbi/MedSupply.Report/definition/pages/Quality/page.json",
+      "sha256": "34aa218864358ce7c9d10e07c75cfd2fe117a3d48b0fd291603b1969d05ea00f",
+      "bytes": 242
+    },
+    {
+      "path": "powerbi/MedSupply.Report/definition/pages/Quality/visuals/Definitions/visual.json",
+      "sha256": "7094e301f25d9488efe35622917776c9c7cd450ccbb854ba8777594a0338f43c",
+      "bytes": 1109
+    },
+    {
+      "path": "powerbi/MedSupply.Report/definition/pages/Quality/visuals/KPI0/visual.json",
+      "sha256": "3e8f57b3483e41aa733018368478440c7ce608ed0d0b0f6cf2c0a308242ce01e",
+      "bytes": 1339
+    },
+    {
+      "path": "powerbi/MedSupply.Report/definition/pages/Quality/visuals/KPI1/visual.json",
+      "sha256": "948e1c176243549ac41eff26f52de1f4e2796185aa3bc28321f0761127a74433",
+      "bytes": 1348
+    },
+    {
+      "path": "powerbi/MedSupply.Report/definition/pages/Quality/visuals/KPI2/visual.json",
+      "sha256": "900fe4813c57a880752204cd07ac676374d0fd99d817eed40b7d2916f6786aa6",
+      "bytes": 1348
+    },
+    {
+      "path": "powerbi/MedSupply.Report/definition/pages/Quality/visuals/KPI3/visual.json",
+      "sha256": "5515b249fe9a983622c3b9ffbd943768cdd5263a4f29b50357555406bb518d43",
+      "bytes": 1358
+    },
+    {
+      "path": "powerbi/MedSupply.Report/definition/pages/Quality/visuals/Runs/visual.json",
+      "sha256": "d21896e4837db0fbddf37f810b0493f64c158f224f0f98549d9f88eec97e6bfa",
+      "bytes": 3423
+    },
+    {
+      "path": "powerbi/MedSupply.Report/definition/pages/Quality/visuals/Subtitle/visual.json",
+      "sha256": "f2a44ae44e34322626125fc94a453e1184386deb507e3065f92e1f4313021ec4",
+      "bytes": 960
+    },
+    {
+      "path": "powerbi/MedSupply.Report/definition/pages/Quality/visuals/Title/visual.json",
+      "sha256": "891be1f0a26786cec075bb4693de5a1a24acd6a0eeb5e30465db05b3ac37e197",
+      "bytes": 867
+    },
+    {
+      "path": "powerbi/MedSupply.Report/definition/pages/pages.json",
+      "sha256": "9c57a209436e860fe8051cd2670e5c1ca5fa55a705b5c7672ecc987da4456852",
+      "bytes": 207
+    },
+    {
+      "path": "powerbi/MedSupply.Report/definition/report.json",
+      "sha256": "c1a91426486be5a1e057b9098281c9add121c2974482edddfcadf15839b41767",
+      "bytes": 241
+    },
+    {
+      "path": "powerbi/MedSupply.Report/definition/version.json",
+      "sha256": "214f76ac35f809be331d427d557a6556d351b6ba59dd5aa42b57ef51eb5a1604",
+      "bytes": 149
+    },
+    {
+      "path": "powerbi/MedSupply.Report/definition.pbir",
+      "sha256": "482e000f1a55d0f426f2290bfaffeb24c4328dc289e05a0547a7f3b2afcf3a94",
+      "bytes": 235
+    },
+    {
+      "path": "powerbi/MedSupply.SemanticModel/definition.pbism",
+      "sha256": "ab47f17b488d1ca8d84781ca69037bdaeaec6901cc2525592e7f763ba973f008",
+      "bytes": 193
+    },
+    {
+      "path": "powerbi/MedSupply.SemanticModel/model.bim",
+      "sha256": "ed74cfc23bd72f87b5dab33beb43532051dae6078fa2266f8a48a0aaa2327e9c",
+      "bytes": 22071
+    },
+    {
+      "path": "powerbi/MedSupply.pbip",
+      "sha256": "81e8de11e9dfa013373e82477ce394fcf55e96cd67c0f38c9e422e6e17848ab8",
+      "bytes": 275
+    },
+    {
+      "path": "powerbi/measures.dax",
+      "sha256": "52b1b81f79b1d78b7e15f21794cb839576aac30bcaf7a2aea01300cca1807535",
+      "bytes": 1064
+    },
+    {
+      "path": "powerbi/power-query/FactChange.pq",
+      "sha256": "abca1fe0f9ae80af6aeb2aa6cc033870b1abf80e10223fed08d6aad60bf82e7b",
+      "bytes": 467
+    },
+    {
+      "path": "powerbi/power-query/FactObservation.pq",
+      "sha256": "a5e40e0526c82ed2ac6ec8a0ec5ebe122f9d903a61e4372b73228483d102c9a5",
+      "bytes": 1585
+    },
+    {
+      "path": "powerbi/power-query/QualityAudit.pq",
+      "sha256": "bef7e5d54bdf9e769fff66ba2767bbbe7525821a73d92fb42c9ca10cd7aec88e",
+      "bytes": 527
+    },
+    {
+      "path": "powerbi/power-query/Snapshot.pq",
+      "sha256": "eadbddbe83af074f99c27c20376d4c040cb6192df9d97556cb5bd0429c71a5d9",
+      "bytes": 417
+    },
+    {
+      "path": "pyproject.toml",
+      "sha256": "780d535031c9a9b484a8792482c90457645ef8bca687cc22d257002859f44280",
+      "bytes": 794
+    },
+    {
+      "path": "scripts/bootstrap.py",
+      "sha256": "21ff2a0fe1445026ecdce0db191e536b3037faf6280901c5c7212e8a99a4d14c",
+      "bytes": 1540
+    },
+    {
+      "path": "scripts/build_powerbi.py",
+      "sha256": "6e9f196eb3e7af80c4fc211643cb5b2dbd809581d38b858d4c21ec4e9249e61e",
+      "bytes": 11876
+    },
+    {
+      "path": "scripts/check_browser.py",
+      "sha256": "236828f85be568bc2923d90a87de155b921161b09cc99da6b2a10be357cacf44",
+      "bytes": 2888
+    },
+    {
+      "path": "scripts/check_marts.py",
+      "sha256": "4a04ca443c6ff3e612b565448a009f2eb1aab8f9c4d3dfa3d0716a3fbac2d3b1",
+      "bytes": 1869
+    },
+    {
+      "path": "scripts/evaluate.py",
+      "sha256": "650e6e6706779cfce922d1559383e6e32b22af4431c44ea15b113fd76e2a5bf5",
+      "bytes": 3282
+    },
+    {
+      "path": "scripts/prepare_corpus.py",
+      "sha256": "63418f6b93f92dc59608c66ac49ccbc68eed35beaa49edf6105b9cb4eaa59559",
+      "bytes": 3499
+    },
+    {
+      "path": "scripts/validate_powerbi.py",
+      "sha256": "745dda23bf96218a6f9648cd004a803536133e5261856eb4c15508deb292bf67",
+      "bytes": 2933
+    },
+    {
+      "path": "src/medsupply/__init__.py",
+      "sha256": "dd9ccdbc2ee1071d1187d885c641c112d9b34a57ba988f7578cdfd97cf17c723",
+      "bytes": 72
+    },
+    {
+      "path": "src/medsupply/api.py",
+      "sha256": "39233ef75ff5c70a41c2aa430169a2e5d249308223f79c07513b1b41086b1762",
+      "bytes": 3642
+    },
+    {
+      "path": "src/medsupply/cli.py",
+      "sha256": "53e7ad149b575b8b0f7d8d52dd9347c94bb95a0c97867bccb081f459327e9558",
+      "bytes": 1435
+    },
+    {
+      "path": "src/medsupply/pipeline.py",
+      "sha256": "e315e4213b2adab196b9800df8f180e6410999c0e66d7e30898c2f3a19f083f2",
+      "bytes": 14991
+    },
+    {
+      "path": "src/medsupply/retrieval.py",
+      "sha256": "9e97a952b4f8a0d856bb8a40c781f0ed8b0936ae06424bd89677d360ff7c4801",
+      "bytes": 9704
+    },
+    {
+      "path": "src/medsupply/static/index.html",
+      "sha256": "0c76c2453af42169199b7d9cc2bb71bffeac900eff0e99f1b64d8cee165be697",
+      "bytes": 14786
+    },
+    {
+      "path": "tests/conftest.py",
+      "sha256": "ff56efd53de069245deb4d79165f7c959b33cdb77e278ea45130fa32ee5e2824",
+      "bytes": 1024
+    },
+    {
+      "path": "tests/test_api_retrieval.py",
+      "sha256": "706f2d4efe87b2b9a7fdb6e4d22f9809872927f32695193e9f3049583f74a874",
+      "bytes": 3969
+    },
+    {
+      "path": "tests/test_extensions.py",
+      "sha256": "1fdd37b9fe54558846cbe83f2c9ff0e509e371900a800db72b030c046580a297",
+      "bytes": 755
+    },
+    {
+      "path": "tests/test_generation.py",
+      "sha256": "34342400f06388f12190ebaf2478c8226bd3aac9d203d02c6019cd771e65caa7",
+      "bytes": 1224
+    },
+    {
+      "path": "tests/test_pipeline.py",
+      "sha256": "06b68764fc5c7695b0e01a0892e439bf680e933dff12ab3f6a70ddd4df9eadd4",
+      "bytes": 4984
+    },
+    {
+      "path": "tests/test_postgres.py",
+      "sha256": "0a98bc0b6f18947c7bb21d1df650ba1f27247e2ad46795e5de619fb63562407b",
+      "bytes": 1024
+    }
+  ]
+}

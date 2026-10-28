@@ -1,0 +1,29 @@
+{
+  "latest_snapshot": {
+    "snapshot_id": "f8a9c323507fa1e0fe2fbdc7",
+    "observed_at": "2026-10-28T06:11:05.006816+00:00",
+    "source_sha256": "d54517618285ca4a5cb2f4335898cac93ff39ee980a19284778538d1e6095ab0",
+    "raw_path": "data/raw/d54517618285ca4a5cb2f4335898cac93ff39ee980a19284778538d1e6095ab0.csv",
+    "source_url": "https://anwendungen.pharmnet-bund.de/lieferengpassmeldungen/public/csv"
+  },
+  "metrics": {
+    "package_observations": 893,
+    "source_reports": 512,
+    "ingredient_labels": 248,
+    "manufacturers": 122,
+    "critical_package_observations": 198,
+    "hospital_package_observations": 247
+  },
+  "snapshot_count": 1,
+  "latest_run": {
+    "run_id": "f8a9c323507fa1e0fe2fbdc7",
+    "observed_at": "2026-10-28T06:11:05.006816+00:00",
+    "source_sha256": "d54517618285ca4a5cb2f4335898cac93ff39ee980a19284778538d1e6095ab0",
+    "status": "success",
+    "source_rows": 896,
+    "accepted_rows": 893,
+    "rejected_rows": 3,
+    "error": "",
+    "source_url": "https://anwendungen.pharmnet-bund.de/lieferengpassmeldungen/public/csv"
+  }
+}

@@ -1,0 +1,62 @@
+[
+  {
+    "id": "supply-definition",
+    "title": "Lieferengpass: definition",
+    "text": "Was ist ein Lieferengpass? Von einem Lieferengpass spricht man, wenn die Auslieferung eines Arzneimittels im üblichen Umfang für mehr als zwei Wochen unterbrochen ist. Der Begriff wird auch verwendet, wenn es eine deutlich vermehrte Nachfrage nach einem Arzneimittel gibt, der nicht angemessen nachgekommen werden kann.",
+    "source_url": "https://gesund.bund.de/arzneimittel-mit-und-ohne-rezept",
+    "source_locator": "Was ist ein Lieferengpass?",
+    "observed_at": "2026-10-28T06:11:51.996367+00:00",
+    "source_sha256": "b583b91c2d153d24cc21f11f39c0b133214540bf67057694144d5139d361f380",
+    "language": "de"
+  },
+  {
+    "id": "supply-causes",
+    "title": "Lieferengpass: published general causes",
+    "text": "Ursachen für Lieferengpässe können sein: Produktionsprobleme: Aufgrund von Ausfällen beim Personal oder von technischen Geräten können die Arzneimittel nicht hergestellt werden. Qualitätsprobleme: Die Arzneimittel können aufgrund von Verunreinigungen oder Ähnlichem nicht freigegeben werden. Erhöhte Nachfrage: Mehr Menschen als gewöhnlich benötigen ein bestimmtes Arzneimittel. Marktverengung: Ein Arzneimittel wird nur von einigen wenigen Herstellern produziert. Dadurch gibt es wenige Ausweichmöglichkeiten, wenn ein Hersteller nicht liefern kann.",
+    "source_url": "https://gesund.bund.de/arzneimittel-mit-und-ohne-rezept",
+    "source_locator": "Ursachen für Lieferengpässe können sein:",
+    "observed_at": "2026-10-28T06:11:51.996367+00:00",
+    "source_sha256": "b583b91c2d153d24cc21f11f39c0b133214540bf67057694144d5139d361f380",
+    "language": "de"
+  },
+  {
+    "id": "supply-not-patient-impact",
+    "title": "Lieferengpass and Versorgungsengpass",
+    "text": "Ein Lieferengpass muss allerdings nicht gleichzeitig ein Versorgungsengpass sein. Oftmals stehen alternative Arzneimittel zur Verfügung, durch welche die Versorgung der Patientinnen und Patienten weiter sichergestellt werden kann.",
+    "source_url": "https://gesund.bund.de/arzneimittel-mit-und-ohne-rezept",
+    "source_locator": "Ein Lieferengpass muss allerdings",
+    "observed_at": "2026-10-28T06:11:51.996367+00:00",
+    "source_sha256": "b583b91c2d153d24cc21f11f39c0b133214540bf67057694144d5139d361f380",
+    "language": "de"
+  },
+  {
+    "id": "registry-purpose",
+    "title": "Register: purpose and reported scope",
+    "text": "Zweck und Zielsetzung der Registerführung Ärztinnen, Ärzten, sowie Apothekerinnen und Apothekern soll durch die rechtzeitige Information über Lieferengpässe die Möglichkeit gegeben werden, nach möglichen Alternativen zu suchen. Das Register ermöglicht allen an der Arzneimittelversorgung Beteiligten vorausschauende Planung, sodass aus Lieferengpässen einzelner Anbietenden keine Versorgungsengpässe für die Patientinnen und Patienten werden. Meldungen zu Lieferengpässen dienen zum einen der Information der Öffentlichkeit, zum anderen aber auch der Bewertung der Kritikalität eines Lieferengpasses durch das BfArM . Hierfür werden vertrauliche Daten übermittelt, die nur dem BfArM zugänglich sind.",
+    "source_url": "https://www.verwaltungsdaten-informationsplattform.de/register/270",
+    "source_locator": "Zweck und Zielsetzung der Registerführung",
+    "observed_at": "2026-10-28T06:11:57.197027+00:00",
+    "source_sha256": "afebdef04bebe470da91f65e1cdbcb6ce444b25735096b89979e2f76e20923d4",
+    "language": "de"
+  },
+  {
+    "id": "registry-reporting",
+    "title": "Register: reporting context",
+    "text": "Kontext der Registerführung und -nutzung Die Meldungen erfolgen durch die Pharmazeutischen Unternehmen und basieren auf der im Pharmadialog erklärten Selbstverpflichtung zur Meldung von Lieferengpässen für versorgungsrelevante Arzneimittel. Sie erfolgen unabhängig von der Regelung nach § 52b Abs. 3a AMG (Information über Lieferengpässe an Krankenhäuser). Eine Liste der Arzneimittel, die als versorgungsrelevant gelten, wird regelmäßig durch den wissenschaftlichen Beirat des BfArM (nach § 52b Abs. 3b AMG zu Liefer- und Versorgungsengpässen) aktualisiert.",
+    "source_url": "https://www.verwaltungsdaten-informationsplattform.de/register/270",
+    "source_locator": "Kontext der Registerführung und -nutzung",
+    "observed_at": "2026-10-28T06:11:57.197027+00:00",
+    "source_sha256": "afebdef04bebe470da91f65e1cdbcb6ce444b25735096b89979e2f76e20923d4",
+    "language": "de"
+  },
+  {
+    "id": "registry-quality",
+    "title": "Register: data quality and update process",
+    "text": "Lieferengpässe werden über ein Meldeportal unter PharmNet.Bund.de an das BfArM übermittelt, dort qualitätsgesichert und mit Daten der Arzneimitteldatenbank des Bund ergänzt. Bei vorhersehbaren Lieferengpässen erfolgt die Meldung spätestens sechs Monate im Voraus, bei unvorhergesehenen Engpässen unverzüglich. Periodizität und Aktualität Die Aktualisierung der Datenbank erfolgt automatisiert und anlassbezogen auf Basis der gemeldeten Informationen.",
+    "source_url": "https://www.verwaltungsdaten-informationsplattform.de/register/270",
+    "source_locator": "Lieferengpässe werden über ein Meldeportal",
+    "observed_at": "2026-10-28T06:11:57.197027+00:00",
+    "source_sha256": "afebdef04bebe470da91f65e1cdbcb6ce444b25735096b89979e2f76e20923d4",
+    "language": "de"
+  }
+]

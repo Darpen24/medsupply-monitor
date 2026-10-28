@@ -1,0 +1,13 @@
+{
+  "desktop": "1440\u00d71100",
+  "mobile": "390\u00d7844",
+  "javascript_errors": [],
+  "checks": [
+    "live API data loads",
+    "15-row pagination",
+    "NIPRUSS filter",
+    "product evidence and citation",
+    "3 quarantine rows",
+    "mobile no horizontal overflow"
+  ]
+}

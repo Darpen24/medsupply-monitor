@@ -1,0 +1,60 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.13.0/schema.json",
+  "name": "KPI1",
+  "position": {
+    "x": 338,
+    "y": 138,
+    "width": 290,
+    "height": 105,
+    "z": 476,
+    "tabOrder": 476
+  },
+  "visual": {
+    "visualType": "card",
+    "drillFilterOtherVisuals": true,
+    "query": {
+      "queryState": {
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "FactObservation"
+                    }
+                  },
+                  "Property": "Accepted Rows"
+                }
+              },
+              "queryRef": "FactObservation.Accepted Rows",
+              "nativeQueryRef": "Accepted Rows"
+            }
+          ]
+        }
+      }
+    },
+    "visualContainerObjects": {
+      "title": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "text": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Accepted Rows'"
+                }
+              }
+            }
+          }
+        }
+      ]
+    }
+  }
+}

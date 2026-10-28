@@ -1,0 +1,130 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.13.0/schema.json",
+  "name": "Runs",
+  "position": {
+    "x": 28,
+    "y": 275,
+    "width": 1200,
+    "height": 300,
+    "z": 303,
+    "tabOrder": 303
+  },
+  "visual": {
+    "visualType": "tableEx",
+    "drillFilterOtherVisuals": true,
+    "query": {
+      "queryState": {
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "QualityAudit"
+                    }
+                  },
+                  "Property": "observed_at"
+                }
+              },
+              "queryRef": "QualityAudit.observed_at",
+              "nativeQueryRef": "observed_at"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "QualityAudit"
+                    }
+                  },
+                  "Property": "status"
+                }
+              },
+              "queryRef": "QualityAudit.status",
+              "nativeQueryRef": "status"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "QualityAudit"
+                    }
+                  },
+                  "Property": "source_rows"
+                }
+              },
+              "queryRef": "QualityAudit.source_rows",
+              "nativeQueryRef": "source_rows"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "QualityAudit"
+                    }
+                  },
+                  "Property": "accepted_rows"
+                }
+              },
+              "queryRef": "QualityAudit.accepted_rows",
+              "nativeQueryRef": "accepted_rows"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "QualityAudit"
+                    }
+                  },
+                  "Property": "rejected_rows"
+                }
+              },
+              "queryRef": "QualityAudit.rejected_rows",
+              "nativeQueryRef": "rejected_rows"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "QualityAudit"
+                    }
+                  },
+                  "Property": "error"
+                }
+              },
+              "queryRef": "QualityAudit.error",
+              "nativeQueryRef": "error"
+            }
+          ]
+        }
+      }
+    },
+    "visualContainerObjects": {
+      "title": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "text": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Ingestion run audit'"
+                }
+              }
+            }
+          }
+        }
+      ]
+    }
+  }
+}

@@ -1,0 +1,21 @@
+Package Observations = VAR Stamp = MAX(Snapshot[observed_at]) RETURN CALCULATE(COUNTROWS(FactObservation), Snapshot[observed_at] = Stamp)
+
+Source Reports = VAR Stamp = MAX(Snapshot[observed_at]) RETURN CALCULATE(DISTINCTCOUNT(FactObservation[report_id]), Snapshot[observed_at] = Stamp)
+
+Critical Observations = CALCULATE([Package Observations], FactObservation[critical_flag] = 1)
+
+Hospital Relevant = CALCULATE([Package Observations], FactObservation[hospital_relevant] = "ja")
+
+Source Rows = SUM(QualityAudit[source_rows])
+
+Accepted Rows = SUM(QualityAudit[accepted_rows])
+
+Rejected Rows = SUM(QualityAudit[rejected_rows])
+
+Acceptance Rate = DIVIDE([Accepted Rows], [Source Rows])
+
+Snapshot Count = COUNTROWS(ALL(Snapshot))
+
+Change Rows = VAR Stamp = MAX(Snapshot[observed_at]) RETURN IF([Snapshot Count] < 2, BLANK(), CALCULATE(COUNTROWS(FactChange), Snapshot[observed_at] = Stamp))
+
+Baseline Note = IF([Snapshot Count] < 2, "Baseline only: change history needs another observation.", "Changes compare observations; feed absence does not establish resolution.")
