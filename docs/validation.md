@@ -1,5 +1,11 @@
 # Validation report
 
+## GitHub acceptance update — 28 October 2026
+
+The [source import](https://github.com/Darpen24/medsupply-monitor/actions/runs/40668305519) succeeded and the complete project folders are published. The [first full CI run](https://github.com/Darpen24/medsupply-monitor/actions/runs/40668616742) passed both jobs: local checks (17 seconds) and PostgreSQL integration plus dbt build (51 seconds). PostgreSQL and dbt execution are therefore no longer pending. The one-time import workflow was disabled after publication. Power BI Desktop execution and live LLM generation remain unverified.
+
+The original local-build record below is retained for provenance; its PostgreSQL/GitHub pending rows describe the earlier build environment, superseded by the linked CI run. The bundled ZIP and release manifest describe that original build snapshot.
+
 Build date: **28 October 2026**. This report distinguishes executed checks from supplied but unexecuted integration paths.
 
 ## Executed
