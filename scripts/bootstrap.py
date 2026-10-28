@@ -12,6 +12,7 @@ from prepare_corpus import prepare
 parser=argparse.ArgumentParser()
 parser.add_argument('--root',default='.')
 parser.add_argument('--cached',action='store_true',help='Reproduce the bundled 28 October 2026 official snapshot')
+parser.add_argument('--rebuild-powerbi', action='store_true', help='Regenerate report files; overwrites authored Power BI edits')
 args=parser.parse_args()
 root=Path(args.root).resolve()
 if args.cached:
@@ -33,5 +34,6 @@ export(root)
 db=Database(database_url(root))
 print(json.dumps(build_index(root,db),indent=2))
 db.close()
-build(root)
+if args.rebuild_powerbi:
+    build(root)
 print('Ready. From the project directory run: uvicorn medsupply.api:app --host 127.0.0.1 --port 8000')
