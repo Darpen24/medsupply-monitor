@@ -1,5 +1,7 @@
 # MedSupply Monitor
 
+**GitHub validation passed — 28 October 2026.** Both local and PostgreSQL CI jobs succeeded, including PostgreSQL ingestion and `dbt build`. [View the verified run](https://github.com/Darpen24/medsupply-monitor/actions/runs/40668616742). The complete source folders are published; the one-time importer is now disabled.
+
 **German reported medicine shortage intelligence: an auditable data pipeline, Power BI project, and cited evidence application.**
 
 Pharmacy procurement analysts need to know what was reported, what changed, and where the explanation came from. This project preserves official observations over time and separates calculated metrics from retrieved text.
@@ -66,7 +68,7 @@ Source acquisition timestamp and SHA-256 are in [the sample manifest](data/sampl
 
 **Executed here:** live source download; local ingestion; replay/idempotency; failure-path and API tests; exact portable dbt SELECT statements on SQLite; dbt parsing; real Chromium desktop/mobile interaction; retrieval/scope evaluation; Microsoft report JSON schema validation.
 
-**Not executed here:** PostgreSQL server integration and `dbt build` on PostgreSQL; Power BI Desktop refresh, DAX execution and native report rendering; live LLM API calls. Dedicated checks and setup steps are supplied. The PostgreSQL integration test is skipped without a dedicated test service. The CI workflow has not been executed on GitHub.
+**Still awaiting runtime acceptance:** Power BI Desktop refresh, DAX execution/native rendering, and live LLM API calls. PostgreSQL integration and dbt materialization have now passed on GitHub Actions; the local test suite intentionally skips PostgreSQL when no service is configured.
 
 The UI screenshots are **web application captures**, not Power BI exports. No PBIX with a populated imported model is supplied. Open the PBIP and refresh it in Desktop to produce one.
 
