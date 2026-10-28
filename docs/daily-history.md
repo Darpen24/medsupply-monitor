@@ -1,11 +1,11 @@
 # Daily source history
 
-The workflow in `.github/workflows/daily-snapshot.yml` requests a run every day at 06:23 UTC. GitHub may delay scheduled runs. The schedule only takes effect on the default branch after merge. The workflow has read permissions and does not commit to any branch.
+The workflow in `.github/workflows/daily-snapshot.yml` requests a run every day at 06:23 UTC. GitHub may delay scheduled runs. The schedule only takes effect on the default branch after merge. The workflow has read permissions and does not commit to any branch. During review it also runs when its own YAML changes on `finish-project`. This allows a real source and artifact check before merge without activating a schedule on `main`.
 
 ## State and reruns
 
-1. Find the last successful run of this workflow on the same branch.
-2. Restore its `daily-shortage-history` artifact. A failed restoration stops the run. No successful previous run means an initial empty history.
+1. On a rerun first look for this run's own saved history. Otherwise find the last successful run of this workflow on the same branch.
+2. Restore its `daily-shortage-history` artifact. A failed restoration stops the run. A first attempt with no successful previous run starts an empty history. A rerun without recoverable state fails rather than downloading a replacement baseline.
 3. Verify every dated manifest against the hash of its original CSV. Replay accepted observations in date order into local SQLite.
 4. If today's UTC manifest exists, skip the feed request. The first successful observation wins for that day even if the source changes later that day.
 5. Otherwise download the live feed and run the existing ingestion checks. Save the actual acquisition time, source URL, SHA-256 and snapshot ID only after ingestion succeeds.
