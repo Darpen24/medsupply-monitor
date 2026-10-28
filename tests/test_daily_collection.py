@@ -1,5 +1,7 @@
 import json
+import os
 import runpy
+import subprocess
 from datetime import datetime, timezone
 from pathlib import Path
 
@@ -76,3 +78,43 @@ def test_external_database_and_naive_time_are_refused(tmp_path, monkeypatch):
     monkeypatch.delenv('DATABASE_URL')
     with pytest.raises(ValueError, match='timezone'):
         collect(tmp_path/'app', tmp_path/'history', datetime(2026, 10, 28))
+
+
+@pytest.mark.parametrize('scenario,attempt,expected', [
+    ('first', '1', 0), ('previous', '1', 0), ('own', '2', 0),
+    ('missing', '2', 1), ('expired', '1', 1),
+])
+def test_workflow_restore_fails_closed(tmp_path, scenario, attempt, expected):
+    workflow = (Path(__file__).resolve().parents[1]/'.github/workflows/daily-snapshot.yml').read_text()
+    block = workflow.split('          set -euo pipefail\n', 1)[1].split('      - name:', 1)[0]
+    shell = 'set -euo pipefail\n' + '\n'.join(line[10:] for line in block.splitlines())
+    fake = tmp_path/'gh'
+    fake.write_text("""#!/usr/bin/env python3
+import json, os, pathlib, sys
+args = sys.argv[1:]
+scenario = os.environ['SCENARIO']
+if args[0] == 'api':
+    print(('true' if scenario == 'own' else 'false') if args[1].endswith('/artifacts') else '123')
+elif args[:2] == ['run', 'list']:
+    print('456' if scenario in {'previous', 'expired'} else '')
+elif args[:2] == ['run', 'download']:
+    if scenario == 'expired':
+        sys.exit(1)
+    folder = pathlib.Path('history')
+    folder.mkdir()
+    (folder/'state.json').write_text(json.dumps({'format_version': 1}))
+    (folder/'2026-10-28.json').write_text('{}')
+else:
+    sys.exit(9)
+""")
+    fake.chmod(0o755)
+    env = {**os.environ, 'PATH': str(tmp_path)+os.pathsep+os.environ['PATH'],
+           'SCENARIO': scenario, 'GITHUB_RUN_ATTEMPT': attempt, 'GITHUB_RUN_ID': '789',
+           'GITHUB_REPOSITORY': 'example/repo', 'GITHUB_REF_NAME': 'finish-project'}
+    result = subprocess.run(['bash', '-c', shell], cwd=tmp_path, env=env,
+                            capture_output=True, text=True)
+    assert result.returncode == expected, result.stderr
+    if scenario in {'previous', 'own'}:
+        assert (tmp_path/'history/2026-10-28.json').exists()
+    if scenario == 'missing':
+        assert not (tmp_path/'history').exists()
