@@ -1,120 +1,101 @@
 # MedSupply Monitor
 
-**GitHub validation passed — 28 October 2026.** Both local and PostgreSQL CI jobs succeeded, including PostgreSQL ingestion and `dbt build`. [View the verified run](https://github.com/Darpen24/medsupply-monitor/actions/runs/40668616742). The complete source folders are published; the one-time importer is now disabled.
+I built this project to practise data engineering with a real problem in Germany: reported medicine shortages. It uses the public BfArM/PharmNet CSV. The data does not come from Kaggle or Hugging Face.
 
-**German reported medicine shortage intelligence: an auditable data pipeline, Power BI project, and cited evidence application.**
+The pipeline keeps each download, checks the rows and compares accepted snapshots. A small web app shows the results and lets me find the source behind a reported shortage. Power BI imports CSV exports. PostgreSQL and dbt provide a separate set of analytics views.
 
-Pharmacy procurement analysts need to know what was reported, what changed, and where the explanation came from. This project preserves official observations over time and separates calculated metrics from retrieved text.
+The core pipeline and evidence search work. Power BI Desktop refresh and real LLM calls still need manual acceptance. The screenshot below is the web app, not Power BI.
 
-![Working web application, captured with Chromium](docs/previews/monitor.png)
+![Web app using the bundled official snapshot](docs/previews/monitor.png)
 
-## Start in five minutes
+## Run it locally
 
-Python 3.11+; Python 3.12 was used for validation. From this project directory:
+Use Python 3.11 or newer. The checks use Python 3.12.
 
 ```bash
 python -m venv .venv
-# Linux / macOS:
+# Linux or macOS
 source .venv/bin/activate
-# Windows PowerShell instead:
-# .\.venv\Scripts\Activate.ps1
+# Windows PowerShell: .\.venv\Scripts\Activate.ps1
 python -m pip install -e ".[dev]"
 python scripts/bootstrap.py --cached
 uvicorn medsupply.api:app --host 127.0.0.1 --port 8000
 ```
 
-Open **http://127.0.0.1:8000**. API documentation: **http://127.0.0.1:8000/docs**.
-No model credentials are required for the default evidence-search application.
+Open http://127.0.0.1:8000. The API docs are at http://127.0.0.1:8000/docs. No API key is needed for evidence search.
 
-`--cached` reproduces the bundled official 28 October 2026 observation. It does not present that observation as today's live status. For a fresh observation:
+`--cached` loads the official observation from 28 October 2026. It is a reproducible example, not today's live status. Run `python scripts/bootstrap.py` for a fresh download. Keep `data/medsupply.sqlite` and `data/raw/` between local runs.
 
-```bash
-python scripts/bootstrap.py
-```
+Bootstrap updates the data and index. It no longer rewrites the Power BI report. Set the export folder in Desktop yourself. Report regeneration is available with `--rebuild-powerbi` but it overwrites authored report files.
 
-The raw feed and timestamped database observations are preserved in `data/`. Keep that directory between runs. Run the fresh command daily with your OS scheduler if you want to accumulate measured history. No external schedule or hosting has been activated.
-
-## Verified baseline
+## What the bundled data contains
 
 | Measure | Value |
 |---|---:|
-| Source CSV rows | 896 |
+| Source rows | 896 |
 | Accepted package observations | 893 |
-| Quarantined source rows | 3 |
-| Distinct source report IDs among accepted observations | 512 |
-| Distinct ingredient labels, not normalized chemical entities | 248 |
-| Distinct manufacturer / authorization-holder labels | 122 |
-| Supply-critical package observations (`verskri`) | 198 |
-| Hospital-relevant package observations (`ja`) | 247 |
+| Quarantined rows | 3 |
+| Distinct source report IDs | 512 |
+| Raw ingredient labels | 248 |
+| Manufacturer or authorisation-holder labels | 122 |
+| Supply-critical package observations | 198 |
+| Hospital-relevant package observations | 247 |
 
-Source acquisition timestamp and SHA-256 are in [the sample manifest](data/sample/manifest.json). Counts describe the accepted observation, not all medicine availability in Germany.
+These are counts from one accepted observation. They are not national stock levels. Several packages can share one report ID. One incomplete row and two conflicting identity rows are quarantined. The original timestamp and file hash are in [the sample manifest](data/sample/manifest.json).
 
-## What works now
+## Real daily history
 
-- Live BfArM/PharmNet CSV download, retry, encoding detection and schema validation.
-- Immutable content-addressed raw files, safe same-timestamp reruns and transactionally published snapshots.
-- Quarantine, run audit, >5% rejection gate and source-to-output reconciliation.
-- Baseline-aware change detection, including expected-end-date changes and feed membership changes.
-- SQLite local baseline and PostgreSQL adapter with Docker Compose and opt-in integration test.
-- Six dbt models and two reconciliation tests; additional model key/relationship tests.
-- FastAPI application with searchable records, pagination, product-scoped evidence, change history and quality audit.
-- BM25 retrieval across current report explanations and six extracted official document sections.
-- SQL-backed expected-end-date extension investigation. Ask **“Which expected end dates were extended?”** after collecting two snapshots.
-- Optional live OpenAI generation with explicit configuration and citation-ID checks.
-- Native Power BI PBIP/PBIR project: five tables, four relationships, eleven DAX measures, two report pages.
-- Automated tests, CI configuration, reproducible scripts and a 30-question retrieval/scope benchmark.
+[The daily workflow](.github/workflows/daily-snapshot.yml) is set to run at 06:23 UTC. GitHub schedules start only after the workflow is on the default branch. This pull request does not activate that schedule or push data to `main`.
 
-## Validation status — read before making portfolio claims
+Each run restores the last successful history artifact for its branch. It downloads the real feed and keeps at most one successful observation per UTC day. A rerun on that day skips the download. The next day gets a new observation even if the bytes are unchanged. Raw files are stored once per SHA-256 hash. SQLite and exports are rebuilt from the saved observations.
 
-**Executed here:** live source download; local ingestion; replay/idempotency; failure-path and API tests; exact portable dbt SELECT statements on SQLite; dbt parsing; real Chromium desktop/mobile interaction; retrieval/scope evaluation; Microsoft report JSON schema validation.
+Download `daily-shortage-history` to keep the raw files and dated manifests. Download `daily-powerbi-exports` for the report. Artifacts are requested for 90 days, subject to repository policy. Each successful run carries the complete history forward. This is not permanent archival storage. If the previous artifact expires or cannot be restored, the workflow fails instead of starting over. Back it up outside Actions before a long pause. See [daily collection and recovery](docs/daily-history.md).
 
-**Still awaiting runtime acceptance:** Power BI Desktop refresh, DAX execution/native rendering, and live LLM API calls. PostgreSQL integration and dbt materialization have now passed on GitHub Actions; the local test suite intentionally skips PostgreSQL when no service is configured.
+Only one real acquisition was bundled when this project was built. Tests use separate fixtures to check changes. A workflow run today cannot prove that collection works across several real days.
 
-The UI screenshots are **web application captures**, not Power BI exports. No PBIX with a populated imported model is supplied. Open the PBIP and refresh it in Desktop to produce one.
+## Power BI uses CSVs
 
-## Open the Power BI project
+Power BI reads four files from `data/exports`: `FactObservation.csv`, `FactChange.csv`, `Snapshot.csv` and `QualityAudit.csv`. Power Query builds `DimProduct` from the observations. It does **not** query the dbt views.
 
-1. Run the cached bootstrap first; it generates exports and configures the local export-folder parameter.
-2. Open [`powerbi/MedSupply.pbip`](powerbi/MedSupply.pbip) in a recent Power BI Desktop release supporting PBIP and PBIR.
-3. In **Transform data → Manage parameters**, confirm `SourceFolder` points to this checkout's `data/exports` folder.
-4. Refresh. Reconcile the monitoring cards against `data/exports/summary.json`.
-5. Validate the snapshot slicer and cross-filtering. The measures default to the latest timestamp in the selected snapshot context.
-6. The quality page intentionally aggregates all exported runs and is disconnected from product filters. Use its run table to inspect individual attempts.
+I kept this route so someone can open the report without running PostgreSQL or setting database credentials. The tradeoff is that I maintain two transformation paths. `scripts/check_marts.py` checks the dbt SELECTs on SQLite. The PostgreSQL CI job runs the real dbt build. These checks do not execute DAX or prove that every Power BI calculation matches dbt.
 
-After moving the checkout, run `python scripts/build_powerbi.py --root .` to reset the parameter. This regenerates the authored report; do not run it over personal Desktop edits without preserving them first. `powerbi/power-query/` and `powerbi/measures.dax` expose the logic for learning.
+Open `powerbi/MedSupply.pbip` in Power BI Desktop. Set **Transform data > Manage parameters > SourceFolder** to the absolute path of `data/exports`. Refresh and compare the cards with `summary.json`. The quality page totals all exported runs and does not follow product filters. The monitoring measures are intended to use the latest timestamp within the selected snapshot context.
 
-## Optional PostgreSQL and dbt
+Desktop refresh, DAX execution and native rendering have not been verified here. There is no populated PBIX in the repo. I will refresh it on Windows and add actual screenshots with the Desktop version and date. Follow [the acceptance steps](docs/finish-acceptance.md). Do not treat the web screenshots as proof of Power BI working.
+
+## PostgreSQL and dbt
 
 ```bash
-python -m pip install -e ".[postgres,dev]"
+python -m pip install -e ".[dev,postgres]"
 docker compose up -d postgres
 ```
 
-Set `DATABASE_URL=postgresql://medsupply:medsupply_local@localhost:5432/medsupply` in your shell, then:
+Set `DATABASE_URL=postgresql://medsupply:medsupply_local@localhost:5432/medsupply` in your shell. PowerShell uses `$env:DATABASE_URL = "postgresql://..."`.
 
 ```bash
 python scripts/bootstrap.py --cached
 dbt build --project-dir dbt --profiles-dir dbt
 ```
 
-PowerShell environment syntax: `$env:DATABASE_URL = "postgresql://..."`.
-For custom credentials also set `PGHOST`, `PGPORT`, `PGUSER`, `PGPASSWORD` and `PGDATABASE` for dbt. The sample local password is for the loopback-only development service. `.env.example` documents variables; Python commands do not automatically load `.env`.
+For custom credentials set `PGHOST`, `PGPORT`, `PGUSER`, `PGPASSWORD` and `PGDATABASE` for dbt too. Python does not load `.env` automatically. The sample password is for the local loopback-only service.
 
-The dbt marts are independently inspectable. The current Power BI delivery imports validated CSV exports from the operational store, not dbt views. Both paths share the same underlying observation grain; [check_marts.py](scripts/check_marts.py) executes the dbt SELECTs on the local baseline and checks reconciliation. Connecting Power BI directly to the PostgreSQL marts is a documented extension, not a dependency for viewing the project.
+The six dbt models cover products, snapshots, observations, changes, current shortages and quality. The views live in `analytics`. The source tables live in `public`. A direct Power BI connection to those views would be a future change requiring new Power Query mappings and Desktop validation.
 
-## Optional live generation
+## Evidence search and optional LLM
 
-Configure `OPENAI_API_KEY`, `OPENAI_MODEL` (a model available to your account), and `ENABLE_LIVE_LLM=true` in your shell. The CLI `medsupply ask --live` is an explicit opt-in; the API additionally requires the enable flag.
+`src/medsupply/retrieval.py` uses BM25 keyword ranking. It searches the latest accepted records and six sections from official pages. The normal answer quotes evidence with source links. This is lexical retrieval, not embedding search.
+
+The optional RAG path sends the question and retrieved passages to OpenAI. Configure `OPENAI_API_KEY` and `OPENAI_MODEL`, then run:
 
 ```bash
 medsupply ask "Why is NIPRUSS reported in shortage?" --live
 ```
 
-The API accepts `POST /api/ask` with `{"question":"...","use_llm":true}`. Retrieved text is sent to the configured provider. The browser defaults to extractive evidence mode; it never silently makes paid model calls. API usage is separate from a ChatGPT or Claude subscription.
+The API also needs `ENABLE_LIVE_LLM=true`. The browser uses evidence search and does not make paid calls. Model tests use mocked responses. Real provider calls remain unverified until the manual **Verify live LLM** workflow runs with your secret and model variable. It makes two paid requests and saves answers with the evidence for human review. See [acceptance steps](docs/finish-acceptance.md).
 
-BM25 is a lexical baseline, not semantic embedding search. A model-backed RAG path is implemented but needs credentials for live acceptance. Citation-ID validation prevents invalid reference numbers; it does **not** prove every generated sentence is supported. Further groundedness and adversarial evaluation is required before relying on live generated answers.
+Citation checks only validate reference numbers. They cannot prove that a sentence is supported. Scope filters use keywords and are incomplete. This project cannot advise on treatment, dosage or substitutions. SQL supplies defined metrics. Retrieval does not calculate totals.
 
-## Reproduce checks
+## Checks
 
 ```bash
 pytest -q
@@ -122,27 +103,28 @@ ruff check src scripts tests
 python scripts/check_marts.py
 python scripts/evaluate.py
 python scripts/validate_powerbi.py
-dbt parse --project-dir dbt --profiles-dir dbt
 ```
 
-Optional browser check: `pip install playwright==1.51.0`, `playwright install chromium`, then `python scripts/check_browser.py`. It starts its own local server and captures desktop and mobile previews. It expects the bundled baseline dataset.
+Run bootstrap before the script checks. `evaluate.py` is a hand-picked 30-question check for the bundled snapshot. It is not a held-out accuracy score and is not part of CI. The Power BI validator checks schemas and references only.
 
-For PostgreSQL integration use an **empty dedicated test database**, set `POSTGRES_TEST_URL`, then run `pytest tests/test_postgres.py`. No test truncates an existing database. The CI PostgreSQL job supplies an isolated service and runs the integration test plus `dbt build`.
+Local review checks passed with 50 tests and one PostgreSQL skip. The [branch CI run](https://github.com/Darpen24/medsupply-monitor/actions/runs/40693563041) passed with PostgreSQL and dbt. Check this pull request's latest CI for the final changes. CI runs pytest, ruff, the local model checks, Power BI schema checks and a PostgreSQL `dbt build`. The PostgreSQL test needs an empty dedicated database through `POSTGRES_TEST_URL`.
 
-## Read and learn
+## What I built and what I would change
 
-- [START_HERE.md](START_HERE.md): a hands-on walkthrough and demo.
-- [Architecture and design decisions](docs/architecture.md).
-- [Data contract, counting rules and limitations](docs/data-contract.md).
-- [Validation report](docs/validation.md).
-- [Retrieval evaluation results](docs/evaluation.json).
+I built the download and validation pipeline, snapshot comparisons, dbt views, evidence API and a Power BI project. I kept the source text in German so I can trace an explanation to what was reported.
+
+I would first collect real daily history and finish the Windows refresh. I would then review real model answers against their passages and add harder retrieval questions. For a longer running service I would move history out of expiring artifacts and make Power BI read the dbt views. I would also improve document refresh and product identity handling. ENR, PZN and product label form a practical key here, not an official shortage episode ID.
+
+I used AI assistance to build and review this project. The code, tests and open limits are here to inspect. I need to understand the choices and be able to trace a record myself.
+
+## Read the code
+
+Start with [START_HERE.md](START_HERE.md). Read [the code review](docs/code-review.md), [data contract](docs/data-contract.md) and [validation record](docs/validation.md) for details.
 
 ## Sources and rights
 
-Primary dataset: [BfArM/PharmNet public shortage CSV](https://anwendungen.pharmnet-bund.de/lieferengpassmeldungen/public/csv).
-Context: [German federal health portal](https://gesund.bund.de/arzneimittel-mit-und-ohne-rezept) and [German administrative-data register description](https://www.verwaltungsdaten-informationsplattform.de/register/270).
-Reference only: [BfArM critical ingredient list](https://www.bfarm.de/SharedDocs/Downloads/DE/Arzneimittel/Zulassung/amInformationen/Lieferengpaesse/Liste_versorgungskritischer_wirkstoffe.pdf?__blob=publicationFile).
+The feed is [BfArM/PharmNet](https://anwendungen.pharmnet-bund.de/lieferengpassmeldungen/public/csv). Background passages come from [gesund.bund.de](https://gesund.bund.de/arzneimittel-mit-und-ohne-rezept) and the [administrative-data register](https://www.verwaltungsdaten-informationsplattform.de/register/270).
 
-Raw source downloads and extracted passages retain their source terms and attribution; they are not relicensed by this project's MIT code license. Public accessibility does not by itself establish CC0 rights. Review the publishers' terms before redistributing source files in a publicly hosted product. Source contact columns are preserved in immutable raw bytes but excluded from the analytics contract and search interface.
+The MIT licence covers project code. Downloaded source data and passages keep their publishers' terms. Public access does not establish CC0 rights. Raw downloads retain source contact columns. Those columns are excluded from the analytics fields and search interface.
 
-This monitors reported supply disruptions; it does not advise on treatment, substitution, hospital stock or patient outcomes. It cannot establish resolution from an elapsed expected end date or a record disappearing from a feed.
+A reported disruption does not establish hospital stock or patient impact. An elapsed expected end date or a missing feed record does not establish resolution.

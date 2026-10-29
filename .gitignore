@@ -11,3 +11,8 @@ dbt/target/
 dbt/logs/
 powerbi/**/.pbi/
 *.zip
+/MedSupply-Monitor.zip
+/release-manifest.json
+/history/
+/acceptance/
+*.pbix

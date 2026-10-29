@@ -1,75 +1,63 @@
-# Validation report
+# Validation record
 
-## GitHub acceptance update — 28 October 2026
+## Review branch, 28 October 2026
 
-The [source import](https://github.com/Darpen24/medsupply-monitor/actions/runs/40668305519) succeeded and the complete project folders are published. The [first full CI run](https://github.com/Darpen24/medsupply-monitor/actions/runs/40668616742) passed both jobs: local checks (17 seconds) and PostgreSQL integration plus dbt build (51 seconds). PostgreSQL and dbt execution are therefore no longer pending. The one-time import workflow was disabled after publication. Power BI Desktop execution and live LLM generation remain unverified.
+The code was reviewed before editing. See [the review findings](code-review.md). All changes are on `finish-project`. No change from this work was pushed to `main`.
 
-The original local-build record below is retained for provenance; its PostgreSQL/GitHub pending rows describe the earlier build environment, superseded by the linked CI run. The bundled ZIP and release manifest describe that original build snapshot.
-
-Build date: **28 October 2026**. This report distinguishes executed checks from supplied but unexecuted integration paths.
-
-## Executed
-
-| Check | Result | Evidence |
-|---|---|---|
-| Official CSV acquisition | HTTP 200, 328,412 source bytes | `data/sample/manifest.json` and bundled unmodified CSV |
-| Baseline reconciliation | 896 source rows = 893 accepted + 3 quarantined | `data/exports/QualityAudit.csv` |
-| Local unit/behavior/API tests | **35 passed, 1 skipped** | `tests/`; PostgreSQL test is the skip |
-| Static lint | Passed | `ruff check src scripts tests` |
-| Fresh-directory cached bootstrap | Passed; reproduced 893 accepted and 3 quarantined | `scripts/bootstrap.py --cached` |
-| Safe replay | Second run returns `already_processed`; counts unchanged | Pipeline tests and cached-bootstrap replay |
-| dbt parsing | Passed with installed dbt / PostgreSQL adapter | `dbt parse --project-dir dbt --profiles-dir dbt` |
-| dbt model SELECTs on SQLite | Six models executed; reconciliations passed | `scripts/check_marts.py` |
-| Retrieval/scope benchmark | 18/18 retrieval hits at 3; MRR@3 1.0; 12/12 scope outcomes | `docs/evaluation.json` |
-| Evidence index | 899 chunks: 893 report observations + 6 official document sections | `medsupply index` output |
-| Web app browser interaction | Passed at 1440×1100 and 390×844; no JavaScript errors or mobile horizontal overflow | `docs/previews/browser-validation.json` |
-| Power BI JSON schemas | **26 native project/report JSON files validated** | `docs/powerbi-validation.json` |
-| Power BI model references | Five tables, four relationships; visual field/measure references valid | `scripts/validate_powerbi.py` |
-| Optional model-provider adapter | Mocked request contract and citation rejection passed | `tests/test_generation.py` |
-
-The test run emits one dependency deprecation warning from the installed Starlette/httpx test-client combination. It did not fail the tests; it is recorded rather than suppressed.
-
-## Source quality findings
-
-1. One Xenpozyme record has fewer CSV columns than the header; classification is missing and a preceding value appears shifted. It is quarantined without attempting to repair source meaning.
-2. Two Scintimun rows have identical ENR/PZN/product identity and different report IDs/expected ends. Both are quarantined rather than selecting one.
-3. The source has placeholder PZN values; IDs remain strings, and product identity also includes ENR and product label.
-4. Multiple PZNs share report IDs. Accepted packages and distinct source reports have separate measures.
-
-## Browser checks performed
-
-- Loaded official accepted data from the running local API.
-- Confirmed 15-row pagination and working filter submission.
-- Searched NIPRUSS and opened its product-scoped explanation.
-- Confirmed official evidence links and original source explanations.
-- Opened the quality page and confirmed all three quarantined rows.
-- Captured desktop and mobile application previews and checked for JavaScript errors and page-width overflow.
-
-The images in `docs/previews/` are web app captures. No native Power BI screenshots or PDFs are claimed.
-
-## Benchmark interpretation
-
-The 30 questions are hand-selected for this baseline snapshot: 12 named-product questions, six official-document questions, and 12 scope/no-match/history questions. Products and document selectors are explicit in `scripts/evaluate.py`. This is an inspectable smoke benchmark, not an independent held-out measurement of general retrieval quality. It does not evaluate live generation, hallucination, semantic paraphrases, multilingual coverage, or production safety.
-
-## Not executed
-
-| Path | Reason / concrete next check |
+| Check | Result and limit |
 |---|---|
-| PostgreSQL integration | No usable PostgreSQL service in the build environment. `POSTGRES_TEST_URL` test and isolated GitHub Actions service are supplied. |
-| PostgreSQL dbt materialization/data tests | Run `dbt build` against the supplied dedicated service; only dbt parsing and the exact portable SELECTs were executed locally. |
-| Power BI Desktop import/refresh | Desktop was unavailable. Open PBIP, set `SourceFolder`, refresh, reconcile cards and exercise filters. |
-| Native DAX execution and report rendering | Structural schema validation is not runtime acceptance. Record Desktop version, totals and export images here after running it. |
-| Live model generation | No model credentials were supplied. Adapter tests use mocked responses, not real LLM output. |
-| GitHub CI | Workflow supplied, but no new repository was created or workflow executed. |
-| Multi-day source history | Only one real acquisition is bundled. Change behavior is tested using isolated synthetic fixtures, never mixed into the official dashboard. |
+| Local pytest | 50 passed and one PostgreSQL skip. Twelve new tests cover daily collection and script safety. |
+| Ruff | Passed for `src`, `scripts` and `tests`. |
+| Cached bootstrap | Passed. Replayed the original observation without replacing authored Power BI files. |
+| Local model SQL | All six dbt SELECTs and both reconciliation queries passed on SQLite. This is not a local PostgreSQL build. |
+| PostgreSQL integration and dbt | Passed in [branch CI](https://github.com/Darpen24/medsupply-monitor/actions/runs/40693563041). An isolated PostgreSQL service runs the integration test and `dbt build`. |
+| Power BI structural checks | 26 JSON files validated. Five tables and four relationships passed reference checks. M, DAX and Desktop rendering were not executed. |
+| Retrieval benchmark | 18 retrieval questions hit at 3 with MRR 1.0. All 12 scope cases matched expectations. These are the same hand-picked baseline questions, not independent accuracy evidence. |
+| Real daily workflow | [First hosted collection](https://github.com/Darpen24/medsupply-monitor/actions/runs/40693563220) succeeded with a live download. It stored cumulative raw history and CSV export artifacts. |
+| Hosted same-day repeat | [A separate run](https://github.com/Darpen24/medsupply-monitor/actions/runs/40694121291) restored history from the first run, returned `already_collected` and still exported one snapshot. |
+| Web browser acceptance | Recorded in the earlier build at 1440x1100 and 390x844. Not rerun for this maintenance change. |
+| LLM adapter | Mocked provider requests passed. No real paid model call or human groundedness review is claimed. |
 
-No hosting, daily job, cloud resources, paid subscription or paid API usage has been activated.
+The local test environment emitted a Starlette/httpx deprecation warning. The collection run also emitted an upload-artifact Node runtime warning. These did not fail the jobs.
 
-## Desktop acceptance record (fill after execution)
+## Two different real observations
+
+The bundled example was acquired at `2026-10-28T06:11:05.006816+00:00`. It contains 896 source rows, 893 accepted package observations and three quarantined rows. There are 512 distinct report IDs among accepted rows. Its source hash is in `data/sample/manifest.json`.
+
+The review workflow downloaded the live feed at `2026-10-28T13:07:35.511051+00:00`. It found 890 source rows, 887 accepted observations and three rejected rows. Its SHA-256 was `8091462449dc64b68f568dea29d3f5ac7a7f412bc2f968c8d852eb146522f987`. Its snapshot ID was `0da8db5f48848f7adfae6426`. An early rerun downloaded again because its own prior artifact was unavailable. That exposed a restoration gap. The workflow now refuses an empty-state rerun and records which history it restores. The next separate run restored the saved artifact and skipped collection. This development issue is not evidence of multi-day history.
+
+The retained review history starts at `2026-10-28T13:09:10.473468+00:00` with snapshot ID `bac462414129b23b649e827f`, from that early rerun. Its raw hash is unchanged. The later hosted run restored this history and skipped a second collection. It does not import the bundled baseline or synthetic fixtures. Both acquisitions happened on the same date. They do not establish multi-day collection. Do not replace the bundled expected counts with the live counts without also changing the dataset being checked.
+
+## What remains unverified
+
+- A second real day of collection and later change history.
+- The scheduled trigger after merge. A branch push exercised the collection job before merge.
+- Long-pause recovery after artifact expiry. Retention is requested for 90 days and needs an independent backup.
+- Windows Power BI import, refresh, DAX calculations and native rendering.
+- Real LLM calls and factual review against the returned passages.
+
+The original screenshots are web app captures. There are no native Power BI screenshots or populated PBIX files. The original ZIP and release manifest have been removed. Historical validation claims should be checked against their linked workflow runs rather than those old bundles.
+
+## Power BI acceptance record
+
+Fill this only after running Desktop. See [the steps](finish-acceptance.md).
 
 - Desktop version:
-- Refresh date and source-folder path:
-- Observation counts match the selected snapshot:
-- Monitoring and audit filters behave as documented:
-- Baseline note visible with only one snapshot:
-- Native report export inspected:
+- Refresh date and selected dataset:
+- SourceFolder:
+- All five tables loaded:
+- Monitoring counts matched summary.json:
+- Audit counts reconciled:
+- Snapshot slicer and chart filters checked:
+- Both pages visually inspected:
+- PBIX saved locally:
+- Real screenshots added:
+
+## Live LLM acceptance record
+
+- Workflow run URL and date:
+- Provider and model:
+- Two real calls completed:
+- Each factual claim compared with its numbered passage:
+- Unsupported claims found:
+- Human review result:
